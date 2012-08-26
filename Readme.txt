@@ -12,6 +12,11 @@ I also designed the parts in a way that makes the builder able to use either Alu
 
 I recommend not using anything thicker than 20mm thick plates/stripes(due to the y motor mount and y idler parts)  and use max 34mm wide frame parts(due to the design of the feet`s), but thinner is ok if the material is stiff enough.
 
+On the todo list is:
 
+- make endstop holder for the X axes.(or maybe someone else makes one I like and I adopt it into the design? )
+- Make endstop adjuster for the Z axes.(or maybe someone else makes one I like and I adopt it into the design? )
+- make all the parts in OpenSCAD... << HELP ME PLEASE!!! >> ( i dont know how to openscad :/ )
+- 
 
 ENJOY!
