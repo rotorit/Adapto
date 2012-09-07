@@ -13,3 +13,5 @@ frameX=20;// width of frame parts (alu, wood etc.)
 frameY=20;// ditto
 
 boltOffset=frameX/2;// How far in the bolt holes go, may need tweaking if framX!=frameY
+
+smoothRod=8;// diameter of smooth rods
