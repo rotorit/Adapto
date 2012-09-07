@@ -20,3 +20,5 @@ On the todo list is:
 - 
 
 ENJOY!
+
+Creative Commons - GNU GPL license
