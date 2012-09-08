@@ -16,9 +16,11 @@ module xBarClamp(){
 			translate([-t-smoothRod/2, 0, 0]) cube([l, b, b]);
 			cylinder(r=t+smoothRod/2, h=b);
 		}
-		cylinder(r=smoothRod/2, h=b);
+		translate ([0,0,-1]) {
+			cylinder(r=smoothRod/2, h=b+2);
+			translate([-3/2, 0, 0]) cube([3, b+1, b+2]);
+		}
 		translate([-t-smoothRod/2, b-(b-smoothRod/2)/2, b/2]) boltWasher("x-");
-		translate([-3/2, 0, 0]) cube([3, b, b]);
 	}
 }
 
