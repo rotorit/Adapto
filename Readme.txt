@@ -21,4 +21,7 @@ On the todo list is:
 
 ENJOY!
 
+If you decide to build one, please feel free to add a pin on the Adapto map.
+https://maps.google.com/maps/ms?msid=205564004670126753599.0004c999938430cb1f611&msa=0&ll=67.339861
+
 Creative Commons - GNU GPL license
