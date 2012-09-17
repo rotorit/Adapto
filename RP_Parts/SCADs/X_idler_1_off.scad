@@ -17,6 +17,8 @@ bhBolt=8;// width of the bearing holder bolt elongated hole
 srXoffset=20;// smooth rod X offset
 srZoffset=3;// smooth rod Z offset
 srSetScrew=3;// diameter of the smooth rod set screw
+sSHead=6;// set screw head diameter
+sSHH=12;// set screw head height
 cHole=4;// X carriage fastener hole diameter
 cHXoffset=26;// X carriage fastener hole X offset
 cHZoffset=14;// X carriage fastener hole Z offset
@@ -33,8 +35,11 @@ difference(){
 	// smooth rod hole
 	// future: should use real length smooth rod
 	translate([srXoffset+smoothRod/2, -1, srZoffset+smoothRod/2]) rotate([-90, 0, 0]) cylinder(r=smoothRod/2, h=width+2);
-	// smooth rod set screw hole
+	// smooth rod set screw hole and countersink
 	translate([-1, srZoffset+srSetScrew/2, srZoffset+smoothRod/2]) rotate([0, 90, 0]) cylinder(r=srSetScrew/2, h=srXoffset+2);
+	translate([-1, srZoffset+srSetScrew/2, srZoffset+smoothRod/2]) rotate([0, 90, 0]) cylinder(r=sSHead/2, h=sSHH+1);
+	// smooth rod set screw captive m3 nut hole - needs to use common module
+	translate([srXoffset-2, srZoffset+srSetScrew/2, srZoffset+smoothRod/2]) rotate([0, 90, 0]) cylinder(r=6/2, h=3, $fn=6);
 	// X carriage fastener hole
 	translate([-1, cHXoffset+cHole/2, cHZoffset+cHole/2]) rotate([0, 90, 0]) cylinder(r=cHole/2, h=shortLength+2);
 
