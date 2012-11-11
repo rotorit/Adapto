@@ -10,7 +10,7 @@ During the MM build i got so extremely annoyed with how over engineered it is so
 
 I also designed the parts in a way that makes the builder able to use either Alu extrusions (20x20mm), wood, alu, acryl plates or plates made out of any material actually(if it is stiff enough). 
 
-I recommend not using anything thicker than 20mm thick plates/stripes(due to the y motor mount and y idler parts)  and use max 34mm wide frame parts(due to the design of the feet`s), but thinner is ok if the material is stiff enough.
+I recommend to use max 34mm wide frame parts(due to the design of the feet`s), but thinner is ok if the material is stiff enough. Wider than 34mm IS not impossible though.
 
 On the todo list is:
 
