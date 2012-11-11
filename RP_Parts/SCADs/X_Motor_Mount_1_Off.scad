@@ -30,7 +30,7 @@ difference(){
 	translate([4+motorcc, 4, -1]) oval();
 	translate([4, 4+motorcc, -1]) oval();
 	translate([4+motorcc, 4+motorcc, -1]) oval();
-
+	translate([0, 57, 14]) cube([111, 111, 111]);
 }
 
 module oval(){
