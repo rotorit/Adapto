@@ -15,3 +15,16 @@ frameY=20;// ditto
 boltOffset=frameX/2;// How far in the bolt holes go, may need tweaking if framX!=frameY
 
 smoothRod=8;// diameter of smooth rods
+
+
+// Copied from 
+// PRUSA Mendel  
+// Default metric sizes
+// GNU GPL v3
+// Josef Průša
+// josefprusa@me.com
+// prusadjs.cz
+// http://www.reprap.org/wiki/Prusa_Mendel
+// http://github.com/prusajr/PrusaMendel
+m3_nut_diameter = 5.3;
+m3_nut_diameter_bigger = ((m3_nut_diameter  / 2) / cos (180 / 6))*2;
