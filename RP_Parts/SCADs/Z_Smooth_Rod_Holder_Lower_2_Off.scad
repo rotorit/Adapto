@@ -14,11 +14,11 @@ thickness=6;
 difference() {
 	union(){
 		ZUpper();
-		translate([30, -50, 0]) cube([max(frameX, 20), 50, thickness]);
-		translate([30+max(frameX, 20)/2, -50, 0]) cylinder(r=max(frameX, 20)/2, h=thickness);
+		translate([40-max(frameX, 20)/2, -50, 0]) cube([max(frameX, 20), 50, thickness]);
+		translate([40-0*max(frameX, 20)/2, -50, 0]) cylinder(r=max(frameX, 20)/2, h=thickness);
 	}
-	translate([-1, -50, -1]) cube([31, 100,100]);
-	translate([50, -50, -1]) cube([31, 100,100]);
-	translate([30+max(frameX, 20)/2, -50, thickness]) boltWasher("z+");
+	translate([-1, -50, -1]) cube([1+40-max(frameX, 20)/2, 100,100]);
+	translate([40+max(frameX, 20)/2, -50, -1]) cube([31, 100,100]);
+	translate([40-0*max(frameX, 20)/2, -50, thickness]) boltWasher("z+");
 }
 

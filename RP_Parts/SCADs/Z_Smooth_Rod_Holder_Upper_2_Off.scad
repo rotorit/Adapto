@@ -18,8 +18,8 @@ module ZUpper(){
 			cube([80, thickness, 50]);
 			translate([0, -30, 0]) cube([80, 30, thickness]);
 			//translate([40-max(frameX, 20)/2, 0, 0]) cube([max(frameX, 20), thickness, 80]);
-			translate([30, -smoothRodOffset, 0]) cube([smoothRod+2*thickness, smoothRod/2+smoothRodOffset, 17+thickness]);
 			hull(){
+				translate([40-max(frameX, 20)/2, -smoothRodOffset, 0]) cube([max(frameX, 20)+0*(smoothRod+2*thickness), smoothRod/2+smoothRodOffset, 17+thickness]);
 				translate([40, -(smoothRodOffset), 0]) cylinder(r=smoothRod/2+thickness, h=17+thickness);
 				translate([40-max(frameX, 20)/2, -30, 0]) cube([max(frameX, 20), 30, thickness]);
 			}
@@ -27,6 +27,7 @@ module ZUpper(){
 		translate([frameX/2, 0, thickness+frameY/2]) boltWasher("y-");
 		translate([80-frameX/2, 0, thickness+frameY/2]) boltWasher("y-");
 		translate([80/2, 0, 50-frameX/2]) boltWasher("y-");
+		//translate([80/2, 0, 80-frameX/2]) boltWasher("y-");
 
 		translate([0, 0, -1]) rotate([0, 0, -90-45]) cube([99, 99, thickness+2]);
 		translate([80, 0, -1]) rotate([0, 0, -90-45]) cube([99, 99, thickness+2]);
