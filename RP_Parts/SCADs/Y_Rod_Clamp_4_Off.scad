@@ -12,9 +12,9 @@ width=frameX;
 
 // render the parts
 yRodClamp(recess=false);
-translate([2*width, 0, 0]) yRodClamp(recess=false);
-translate([2*width, 3*width, 0]) yRodClamp(recess=false);
-translate([0, 3*width, 0]) yRodClamp(recess=false);
+//translate([2*width, 0, 0]) yRodClamp(recess=false);
+//translate([2*width, 3*width, 0]) yRodClamp(recess=false);
+//translate([0, 3*width, 0]) yRodClamp(recess=false);
 
 module yRodClamp(recess=false){
 difference(){
