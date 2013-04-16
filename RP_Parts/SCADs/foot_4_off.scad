@@ -10,6 +10,9 @@ t=5;// wall thickness
 use <bolt.scad>;
 include <configuration.scad>;
 
+foot();
+
+module foot(){
 difference(){
 	cube([b, b, t]);
 	translate([b, 25, -t]) rotate([0, 0, 45]) cube([2*b, 2*b, 3*t]);
@@ -35,4 +38,4 @@ translate([0, 0, 25]) difference(){
 	cube([t, b-boltOffset, h-25]);
 	translate([-t, 15, h-25]) rotate([-55, 0, 0]) cube([3*t, h, h]);
 
-}
+}}
