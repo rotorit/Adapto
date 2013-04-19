@@ -1,3 +1,16 @@
-PLEASE help me make the SCADs.. I dont know how to do it :-)
+These are OpenSCAD models of Adapto parts.
 
-t00tie to the rescue!
+Most are based on RoTorITs original design and attempt to reproduce that functionality if not the exact same look and feel. Some are simplified and/or lack embellishment.
+
+A number of the scads contain alternative implementations of the parts. These are t00tie's attempts at improving the design. Goals for this include smaller, cheaper parts. See each file for details. These alternative parts fit together but are not necessarily directly interchangeable with the originals, choose either or, or double check before you print and build.
+
+t00tie would love your feedback on these, both criticisms and improvement suggestions.
+
+
+Making the STLs
+---------------
+On linux make the stls by typing one of
+make -k
+make -k -j12
+
+If openscad is in your path this should result in lots of new files in the "output" directory.
