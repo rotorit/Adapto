@@ -9,6 +9,8 @@ t00tie would love your feedback on these, both criticisms and improvement sugges
 
 Making the STLs
 ---------------
+Edit configuration.scad to suit your needs. Check the resulting parts for sanity. Quite a few values are still hard-coded in the scads, you may need to edit them. Ask t00tie for help if you need it.
+
 On linux make the stls by typing one of
 make -k
 make -k -j12
