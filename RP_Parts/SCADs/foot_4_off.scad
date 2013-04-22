@@ -10,7 +10,36 @@ t=5;// wall thickness
 use <bolt.scad>;
 include <configuration.scad>;
 
+// foot() is a copy of rotorits original stl
+// foot2() is a smaller version designed to save plastiv and fit under the frame
 foot();
+
+
+module foot2(){
+// This foot is intended to be underneath the frame
+// The height is designed som standard 48mm tall Z motors will sit on the table
+// 54mm over the table is half way up the side of the Y frame -> |X|
+// ref. Z motor holder
+$fn=99;
+difference(){
+	union(){
+		cube([2*frameX, frameX, t]);
+		cube([frameX, 2*frameX, t]);
+		hull(){
+			cube([2*frameX, t, t]);
+			translate([0, 0, 54-t-frameY/2]) cube([frameX, t, t]);
+		}
+		hull(){
+			cube([ t, 2*frameX,t]);
+			translate([0, 0, 54-t-frameY/2]) cube([t, frameX, t]);
+		}
+	}
+	// bolt holes
+	translate([frameX/2, frameX/2, 0]) boltWasher("z-");
+	translate([frameX/2, 3*frameX/2, 0]) boltWasher("z-");
+	translate([3*frameX/2, frameX/2, 0]) boltWasher("z-");
+}}
+
 
 module foot(){
 difference(){
