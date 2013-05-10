@@ -9,8 +9,8 @@
 // frameX is the width of the Y frame seen from the front (an extrusion looks roughly like an X)
 // frameY is the height of the Y frame seen from the front
 // these are used to find offsets for screw placing so screws meet the (slot in the) middle of the frame
-frameX=20;// width of frame parts (alu, wood etc.)
-frameY=20;// ditto
+frameX=22;// width of frame parts (alu, wood etc.)
+frameY=22;// ditto
 thickness=6;// thickness of walls etc. in parts
 
 // Screws and bolts and rods
@@ -22,12 +22,14 @@ boltOffset=frameX/2;// How far in the bolt holes go, may need tweaking if framX!
 
 smoothRod=8;// diameter of smooth rods
 xRodDistance=70;// i3 xaxis_rod_distance=45, try this for compatible extruders, ymmv
-screwR=5.2/2;// Defaults for M5 screws
+screwR=5.3/2;// Defaults for M5 screws
+// print the hole_calibration.scad object to dial in the next 6 settings
 M8=8.4;// diameter of M8 threaded rod
-M5=5.4;// diameter of M5 threaded rod
+M5=5.3;// diameter of M5 threaded rod
 M3=3.4;// diameter of M3 threaded rod
-M5nut=9.2;// diameter of M5 nut using $fn=6
-M3nut=5.4;// diameter of M3 nut using $fn=6
+M8nut=15.2;// diameter of M8 nut using $fn=6
+M5nut=9.9;// diameter of M5 nut using $fn=6
+M3nut=6.9;// diameter of M3 nut using $fn=6
 
 
 // bearings
