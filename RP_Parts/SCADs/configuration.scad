@@ -9,8 +9,8 @@
 // frameX is the width of the Y frame seen from the front (an extrusion looks roughly like an X)
 // frameY is the height of the Y frame seen from the front
 // these are used to find offsets for screw placing so screws meet the (slot in the) middle of the frame
-frameX=22;// width of frame parts (alu, wood etc.)
-frameY=22;// ditto
+frameX=20;// width of frame parts (alu, wood etc.)
+frameY=20;// ditto
 thickness=6;// thickness of walls etc. in parts
 
 // Screws and bolts and rods
