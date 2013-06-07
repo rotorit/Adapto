@@ -11,7 +11,7 @@ use <bolt.scad>;
 include <configuration.scad>;
 
 // foot() is a copy of rotorits original stl
-// foot2() is a smaller version designed to save plastiv and fit under the frame
+// foot2() is a smaller version designed to save plastic and fit under the frame
 foot();
 
 
