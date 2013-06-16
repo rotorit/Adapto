@@ -12,6 +12,8 @@ include <configuration.scad>;
 
 // foot() is a copy of rotorits original stl
 // foot2() is a smaller version designed to save plastic and fit under the frame
+// leave as is <foot();> if you want the original foot or type <foot2();> if you want the small plastic saver foot
+
 foot();
 
 
