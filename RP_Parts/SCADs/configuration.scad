@@ -20,16 +20,20 @@ washerOuterRadius=10/2;// washers that fit the bolts
 washerLength=10;// this is large because it is used to make holes for washers
 boltOffset=frameX/2;// How far in the bolt holes go, may need tweaking if framX!=frameY
 
-smoothRod=8;// diameter of smooth rods
 xRodDistance=70;// i3 xaxis_rod_distance=45, try this for compatible extruders, ymmv
 screwR=5.3/2;// Defaults for M5 screws
 // print the hole_calibration.scad object to dial in the next 6 settings
+// google found http://www.fairburyfastener.com/xdims_metric_nuts.htm
 M8=8.4;// diameter of M8 threaded rod
 M5=5.3;// diameter of M5 threaded rod
 M3=3.4;// diameter of M3 threaded rod
 M8nut=15.2;// diameter of M8 nut using $fn=6
 M5nut=9.9;// diameter of M5 nut using $fn=6
 M3nut=6.9;// diameter of M3 nut using $fn=6
+M8nutThickness=6.8;// thickness of a standard M8 nut
+M5nutThickness=4.7;// thickness of a standard M5 nut
+M3nutThickness=2.4;// thickness of a standard M3 nut
+smoothRod=M8;// diameter of smooth rods
 
 
 // bearings
