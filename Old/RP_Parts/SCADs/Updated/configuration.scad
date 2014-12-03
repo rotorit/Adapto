@@ -72,3 +72,5 @@ zRodnutThickness=ACME14nutThickness;	// change this to the z nut thickness you a
 $fn=100;				// default resolution for parts, decrease if part compiling or stl/gcode is unmanageable
 xRodDistance=70;		// i3 xaxis_rod_distance=45, try this for compatible extruders, ymmv
 thickness=5;			// thickness of walls etc. in parts
+motorcc=31;				// center-center of the motor screw holes for nema17
+centerr=12;				// radius of the nema axle hole
