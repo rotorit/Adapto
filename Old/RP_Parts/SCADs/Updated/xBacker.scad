@@ -94,7 +94,7 @@ module xBacker(){
 
 		// The curve http://www.wolframalpha.com/input/?i=circle+that+intersects+%2844%2C0%29+and+%2862%2C19%29+and+%2862%2C-19%29 or something similar
 		translate([0, 33/2+27+thickness+linearBearing[1]/2+20, -1])
-			cylinder(r=685/27, h=30);
+			cylinder(r=685/28, h=30);
 
 		// trim the sides
 		translate([88/2, 0, -1])
