@@ -20,12 +20,10 @@ module xMotor(){
 				translate([44-thickness, 109, 0])
 					cube([thickness, 1, thickness]);
 			}
-			//translate([20, 64, 0])
-			//	cube([24, 46, thickness]);
 			hull(){
-				translate([44-thickness, 40, 27+thickness+linearBearing[1]])
-					cube([thickness, 1, 2]);
-				translate([44-thickness, 64, 27+thickness+linearBearing[1]])
+				translate([44-thickness-linearBearing[1]/2, 40, 27+thickness+linearBearing[1]])
+					cube([thickness+linearBearing[1]/2, 24, 2]);
+				#translate([44-thickness, 63, 27+thickness+linearBearing[1]])
 					cube([thickness, 1, 11]);
 			}
 		}//end union
