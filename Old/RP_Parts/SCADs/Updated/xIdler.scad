@@ -5,9 +5,9 @@
 include <configuration.scad>
 use <xBacker.scad>
 
-xidler();
+xIdler();
 
-module xidler(){
+module xIdler(){
 	difference(){
 		union(){
 			xBacker();// import the base x backing model
