@@ -103,13 +103,13 @@ module xBacker(){
 			cube([100,100,100]);
 
 		// The Z nut trap and hole for Z threaded rod
-		translate([-45, 39+linearBearing[1]/2+screwR, thickness+(zRod+1)/2])
+		translate([-45, 39+linearBearing[1]/2+zRod/2, thickness+(zRod+.5)/2])
 			rotate([0, 90, 0])
-			cylinder(r=(zRod+1)/2, h=90);
-		translate([-4, 39+linearBearing[1]/2+screwR, thickness+(zRod+1)/2])
+			cylinder(r=(zRod+.5)/2, h=90);
+		translate([-ceil(zRodnutThickness+1)/2, 39+linearBearing[1]/2+zRod/2, thickness+(zRod+.5)/2])
 			rotate([90, 0, 0])
 			rotate([0, 90, 0])
-			cylinder(r=zRodnut/2, h=zRodnutThickness+2, $fn=6);
+			cylinder(r=(zRodnut+.5)/2, h=ceil(zRodnutThickness+1), $fn=6);
 
 		// nuts traps for M3 nuts and screws to hold the x smooth rods in place
 		translate([-xRodDistance/2, linearBearing[1]/2+50, -1])

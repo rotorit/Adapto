@@ -5,7 +5,7 @@
 include <configuration.scad>;
 use <nemaMount.scad>
 
-width=round(thickness+screwR+thickness*3+M3+motorcc+M3+thickness*3+screwR+thickness);
+width=thickness+screwR+thickness*2+45+thickness*2+screwR+thickness;
 
 zMotor();
 
@@ -14,34 +14,36 @@ module zMotor(){
 		union(){
 			translate([0, -width/2, 0])
 				cube([thickness, width, frameY]);
-			translate([0, -round(thickness+M3/2+motorcc+M3/2+thickness)/2, 0])
-				cube([thickness+10, round(thickness+M3/2+motorcc+M3/2+thickness), thickness]);
-			translate([thickness+10, -round(thickness+M3/2+motorcc+M3/2+thickness)/2, 0])
+			translate([0, -45/2, 0])
+				cube([thickness+10, 45, thickness]);
+			translate([thickness+10, -45/2, 0])
 				nemaMount();
 			hull(){
-				translate([thickness-1, -round(thickness*2+M3/2+motorcc/2), 0])
+				translate([thickness-1, -thickness-45/2, 0])
 					cube([1, thickness, frameY]);
-				translate([thickness+9+round(thickness+(18-M3)+motorcc+thickness), -round(thickness*2+M3/2+motorcc/2), 0])
+				translate([thickness+9+56, -thickness-45/2, 0])
 					cube([1, thickness, thickness]);
 			}
 			mirror([0,1,0])
 				hull(){
-					translate([thickness-1, -round(thickness*2+M3/2+motorcc/2), 0])
+					translate([thickness-1, -thickness-45/2, 0])
 						cube([1, thickness, frameY]);
-					translate([thickness+9+round(thickness+(18-M3)+motorcc+thickness), -round(thickness*2+M3/2+motorcc/2), 0])
+					translate([thickness+9+56, -thickness-45/2, 0])
 						cube([1, thickness, thickness]);
 				};
 			hull(){
-				translate([thickness-1, -round(screwR+thickness*4+M3+motorcc/2)+.5, 0])
-					cube([1, thickness*2+M3+thickness+1, thickness]);
-				translate([thickness+9+round(thickness+(18-M3)+motorcc+thickness), -round(thickness*2+M3/2+motorcc/2), 0])
+				translate([thickness, -45/2, 0])
+					rotate([0,0,180])
+					cube([1, thickness+screwR+thickness*2, thickness]);
+				translate([thickness+9+56, -thickness-45/2, 0])
 					cube([1, thickness, thickness]);
 			}
 			mirror([0,1,0])
 				hull(){
-					translate([thickness-1, -round(screwR+thickness*4+M3+motorcc/2)+.5, 0])
-						cube([1, thickness*2+M3+thickness+1, thickness]);
-					translate([thickness+9+round(thickness+(18-M3)+motorcc+thickness), -round(thickness*2+M3/2+motorcc/2), 0])
+					translate([thickness, -45/2, 0])
+						rotate([0,0,180])
+						cube([1, thickness+screwR+thickness*2, thickness]);
+					translate([thickness+9+56, -thickness-45/2, 0])
 						cube([1, thickness, thickness]);
 				};
 		}// end union
