@@ -1,4 +1,8 @@
-include <configuration.scad>;
+// Copyright (C) 2012 t00tie
+// After an stl designed by RoTorIT
+// Adapto is licensed under the Creative Commons - GNU GPL license.
+// http://creativecommons.org/licenses/GPL/2.0/
+include <configuration.scad>
 
 xBacker();
 
