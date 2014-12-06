@@ -1,5 +1,5 @@
-These scads were generated with the below configuration in the configuration.scad file.
-This is not likely defaut for most users due to the ACME rod specs for the z axis but applies to my printers configuration specifically.
+These scads were generated via openSCAD with the below configuration in the configuration.scad file, and then run through InStep V2.3 to make absolutely sure they are tidy.
+This is not likely defaut configuration for most users due to the ACME rod specs for the z axis but applies to my printers configuration specifically.
 
 //==============//
 // Basic Config //

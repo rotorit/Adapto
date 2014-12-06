@@ -8,9 +8,13 @@ use <xBacker.scad>
 xIdler();
 
 module xIdler(){
+
 	difference(){
+
 		union(){
+
 			xBacker();// import the base x backing model
+
 			// idler mount tab
 			hull(){
 				translate([-44, 40, 24+thickness+linearBearing[1]/2+thickness+M8/2])
@@ -20,21 +24,25 @@ module xIdler(){
 					rotate([0, 90, 0])
 					cylinder(r=thickness+.8+M8/2, h=22);
 			}
+
 		}// end union
 		
-		// idler hole
+		// idler slot hole
 		hull(){
 			translate([-45, 52, 27+thickness+linearBearing[1]/2+thickness+M8/2])
 				rotate([0, 90, 0])
-				cylinder(r=M8/2, h=44);
+				cylinder(r=M8/2, h=34);
 			translate([-45, 52, 27+thickness+linearBearing[1]/2+thickness+M8/2+16])
 				rotate([0, 90, 0])
-				cylinder(r=M8/2, h=44);
+				cylinder(r=M8/2, h=34);
 		}
+
+		// carve washer space at base of idler slot
 		translate([-22, 52, 27+thickness+linearBearing[1]/2+thickness+M8/2])
 			rotate([0, 90, 0])
-			cylinder(r=M8, h=22);
+			cylinder(r=M8, h=11);
 	
 	}// end difference
+
 }
 

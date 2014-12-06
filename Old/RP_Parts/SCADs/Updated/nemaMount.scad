@@ -29,6 +29,7 @@ module nemaMount(){
 			translate([height/2+slotWidth/2, width/2, -1])
 				cylinder(r=centerr+.5, h=thickness+2);
 		}
+
 		// position slots for nema17
 		translate([height/2-motorcc/2+thickness, width/2-motorcc/2, -1])
 			rotate([0,0,180])
@@ -40,7 +41,9 @@ module nemaMount(){
 			oval();
 		translate([height/2+motorcc/2-thickness, width/2+motorcc/2, -1])
 			oval();
+
 	}// end difference
+
 }
 
 // slot for nema bolt mount
