@@ -1,0 +1,173 @@
+// Copyright (C) 2013 t00tie
+// After an stl designed by RoTorIT
+// Adapto is licensed under the Creative Commons - GNU GPL license.
+// http://creativecommons.org/licenses/GPL/2.0/
+include <configuration.scad>
+
+inner=2*rotaryBearing[2]+2*2;// 2 608+2 washers
+
+// original (2 lines)
+//mirror([ 0, 1, 0 ]) yIdler();
+//translate([0, frameX, 0]) yIdler();
+
+// t00ties new version,
+yIdlerBlock();
+translate([-33, 0, thickness/2])
+	yIdlerHolder(); //bottom side has thicker edges around bolt holes and nut trap
+
+// original module
+module yIdler(){
+
+	difference(){
+
+		union(){
+
+			// frame mounting plates
+			translate([-thickness, 0, 0])
+				cube([thickness, frameX, frameX]);
+			translate([-frameX, 0, 0])
+				cube([frameX, thickness, frameX]);
+
+			// bearing support flange
+			cube([frameX/2, frameX, thickness]);
+			translate([frameX/2, frameX/2, 0])
+				cylinder(r=frameX/2, h=thickness);
+
+		}// end union
+
+		// bearing bolt hole
+		translate([frameX/2, frameX/2, -1])
+			cylinder(r=M8/2, h=thickness+2);
+
+		// holes to attach to the frame
+		translate([-thickness-1, frameX/2+thickness, frameX/2+M5/2])
+			rotate([0,90,0])
+			cylinder(r=M5/2, h=thickness+2);
+		translate([-frameX/2-thickness, thickness+1, frameX/2])
+			rotate([90,0,0])
+			cylinder(r=M5/2, h=thickness+2);
+
+	}// end difference
+
+}
+
+// t00ties modules
+module yIdlerHolder(){
+
+	length=rotaryBearing[1]/2+thickness+M5nutThickness/2;
+
+	difference(){
+
+		union(){
+
+			// bearing tensioner base
+			translate([length, -inner/2-thickness, -thickness/2])
+				cube([thickness, inner+2*thickness, thickness*2+M5]);
+
+			// bearing tensioner arms
+			translate([0, inner/2, -thickness/2])
+				cube([length+thickness, thickness, thickness*2+M5]);
+			translate([0, -inner/2-thickness, -thickness/2])
+				cube([length+thickness, thickness, thickness*2+M5]);
+
+			// tensioner arms curved ends
+			translate([0, inner/2, thickness/2+M5/2])
+				rotate([-90, 0, 0])
+				cylinder(r=M8/2+thickness, h=thickness);
+			mirror([0,1,0])
+				translate([0, inner/2, thickness/2+M5/2])
+				rotate([-90, 0, 0])
+				cylinder(r=M8/2+thickness, h=thickness);
+
+			// rotary bearings for reference
+			%translate([0, 0, thickness/2+M5/2])
+				rotate([-90, 0, 0])
+				cylinder(r=rotaryBearing[1]/2, h=rotaryBearing[2]);
+			%translate([0, 0, thickness/2+M5/2])
+				rotate([90, 0, 0])
+				cylinder(r=rotaryBearing[1]/2, h=rotaryBearing[2]);
+
+		}// end union
+
+		// tensioning bolt hole
+		translate([length-1, 0, thickness/2+M5/2])
+			rotate([0, 90, 0])
+			cylinder(r=M5/2, h=thickness+2);
+
+		// tensioner arm M5 nut trap
+		translate([length-M5nutThickness/2, 0, thickness/2+M5/2])
+			rotate([90, 0, 0])
+			rotate([0, 90, 0])
+			cylinder(r=M5nut/2, h=M5nutThickness, $fn=6);
+
+		// bearing bolt holes
+		translate([0, inner/2-1, thickness/2+M5/2])
+			rotate([-90, 0, 0])
+			cylinder(r=M8/2, h=2*thickness+2);
+		mirror([0,1,0])
+			translate([0, inner/2-1, thickness/2+M5/2])
+			rotate([-90, 0, 0])
+			cylinder(r=M8/2, h=2*thickness+2);
+
+		// cut the humps off the tensioner curved ends
+		translate([-25, -25, -50-thickness/2])
+			cube([50, 50, 50]);
+		translate([-25, -25, thickness/2*2+M5])
+			cube([50, 50, 50]);
+
+	}// end difference
+
+}
+
+module yIdlerBlock(){
+
+	difference(){
+
+		union(){
+
+			// base block
+			hull(){
+				translate([0, -inner/2-3*thickness, 0])
+					cube([frameX/2, inner+6*thickness, 2*thickness]);
+				translate([0, -inner/2, 0])
+					cube([thickness+frameX/2, inner, 2*thickness]);
+			}
+
+			// upper tab
+			hull(){
+				translate([frameX/2, -inner/2, 0])
+					cube([thickness, inner, 2*thickness]);
+				translate([frameX/2, 0, frameX/2+2*thickness])
+					rotate([0, 90, 0])
+					cylinder(r=(5+thickness)/2, h=thickness);
+			}
+
+			//base block curved arm ends
+			translate([0, inner/2+2.5*thickness-5/2, 0])
+				cylinder(r=5/2+thickness/2, h=2*thickness);
+			translate([0, -inner/2-2.5*thickness+5/2, 0])
+				cylinder(r=5/2+thickness/2, h=2*thickness);
+
+		}// end union
+
+		// tensioner hole
+		translate([-1, 0, thickness])
+			rotate([0, 90, 0])
+			cylinder(r=5/2, h=frameX+thickness+2);
+
+		// create tensioner cavity
+		translate([-1, -inner/2-2*thickness+5, -1])
+			cube([frameX/2-0.5*thickness+1, inner+4*thickness-2*5, 2*thickness+2]);
+
+		// holes to attach to the frame
+		translate([frameX/2-1, 0, frameX/2+2*thickness])
+			rotate([0, 90, 0])
+			cylinder(r=5/2, h=thickness+2);
+		translate([0, inner/2+2.5*thickness-5/2, -1])
+			cylinder(r=5/2, h=2*thickness+2);
+		translate([0, -inner/2-2.5*thickness+5/2, -1])
+			cylinder(r=5/2, h=2*thickness+2);
+
+	}// end difference
+
+}
