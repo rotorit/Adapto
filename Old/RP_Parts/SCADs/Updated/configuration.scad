@@ -57,9 +57,9 @@ lm10luu=[10, 19.1, 55];
 608zz=[8, 22, 7];
 rotaryBearing=608zz;// for readability(can be changed if other bearings are used
 
-//==============//
-// Basic Config //
-//==============//
+//====================//
+// Basic Config Items //
+//====================//
 smoothRod=10;			// diameter of smooth rods in mm
 linearBearing=lm10uu;	// change this to the linear bearing you are using from the definitions section
 zRod=ACME14;			// change this to the z threaded rod you are using from the definitions section

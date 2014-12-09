@@ -15,13 +15,13 @@ module yBearing(){
 		union(){
 	
 			cube([length, thickness, linearBearing[2]]);
-			translate([length/2, -linearBearing[1]/2-0*thickness+2, 0])
+			translate([length/2, -linearBearing[1]/2+2, 0])
 				cylinder(r=linearBearing[1]/2+thickness, h=linearBearing[2]);
 	
 		}// end union
 	
 		// linear bearing
-		translate([length/2, -linearBearing[1]/2-0*thickness+2, -1])
+		translate([length/2, -linearBearing[1]/2+2, -1])
 			cylinder(r=linearBearing[1]/2, h=linearBearing[2]+2);
 	
 		// flatten mounting surface
