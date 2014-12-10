@@ -24,14 +24,23 @@ module yIdler(){
 
 			// frame mounting plates
 			translate([-thickness, 0, 0])
-				cube([thickness, frameX, frameX]);
+				cube([thickness, frameX+thickness, frameX]);
 			translate([-frameX, 0, 0])
 				cube([frameX, thickness, frameX]);
 
 			// bearing support flange
-			cube([frameX/2, frameX, thickness]);
-			translate([frameX/2, frameX/2, 0])
-				cylinder(r=frameX/2, h=thickness);
+			hull(){
+				cube([frameX/2, frameX+thickness, thickness]);
+				translate([frameX/2, frameX/2, 0])
+					cylinder(r=frameX/2, h=thickness);
+			}
+			// support brace
+			hull(){
+				translate([-thickness, frameX, 0])
+					cube([thickness, thickness, frameX]);
+				translate([0, frameX, 0])
+					cube([frameX/2, thickness, thickness]);
+			}
 
 		}// end union
 
