@@ -1,13 +1,11 @@
 // Copyright (C) 2012 t00tie
 // Adapto is licensed under the Creative Commons - GNU GPL license.
 // http://creativecommons.org/licenses/GPL/2.0/
+include <configuration.scad>
 
 // hole size calibration object
 // M8 has a block on top of the arch
 // Order goes from block on top of M8, M5, M3, zRod
-
-include <configuration.scad>
-
 echo("M3=", M3);
 echo("M5=", M5);
 echo("M8=", M8);

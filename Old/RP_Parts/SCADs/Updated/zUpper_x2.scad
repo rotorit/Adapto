@@ -4,11 +4,10 @@
 // http://creativecommons.org/licenses/GPL/2.0/
 include <configuration.scad>
 
-smoothRodOffset=14;// how far the centre of the z smooth rods are from the frame
-
 zUpper();
 
 module zUpper(){
+	smoothRodOffset=14;// how far the centre of the z smooth rods are from the frame
 
 	difference(){
 
@@ -45,13 +44,18 @@ module zUpper(){
 			cylinder(r=screwR, h=thickness+2);
 
 		// cut the corners of the back and top plates
-		translate([0, 0, -1]) rotate([0, 0, -90-45]) cube([99, 99, thickness+2]);
-		translate([80, 0, -1]) rotate([0, 0, -90-45]) cube([99, 99, thickness+2]);
-		translate([30, -1, 50]) rotate([0, -90-45, 0]) cube([99, thickness+2, 99]);
-		translate([50, -1, 50]) rotate([0, 90-45, 0]) cube([99, thickness+2, 99]);
+		translate([0, 0, -1]) rotate([0, 0, -90-45])
+			cube([99, 99, thickness+2]);
+		translate([80, 0, -1]) rotate([0, 0, -90-45])
+			cube([99, 99, thickness+2]);
+		translate([30, -1, 50]) rotate([0, -90-45, 0])
+			cube([99, thickness+2, 99]);
+		translate([50, -1, 50]) rotate([0, 90-45, 0])
+			cube([99, thickness+2, 99]);
 
 		//hole for smooth rod
-		translate([40, -smoothRodOffset, -1]) cylinder(r=smoothRod/2, h=17+thickness+2);
+		translate([40, -smoothRodOffset, -1])
+			cylinder(r=smoothRod/2, h=17+thickness+2);
 
 	}//end difference
 

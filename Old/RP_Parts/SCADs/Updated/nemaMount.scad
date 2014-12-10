@@ -4,21 +4,21 @@
 // http://creativecommons.org/licenses/GPL/2.0/
 include <configuration.scad>
 
+slotWidth=18-2*M3;	// width of slots for holes
+
 // This model is only parametric for the thickness value. The rest is constant.
 // This helps with importing to other models, and helps define a guaranteed area for the nema17
 // not including the depth of the motor as that can vary.
-
-// module specific constants
-width=45;	// y axis
-height=56;	// x axis
-centerr=22/2;	// radius of nema axle bearing raised surface
-motorcc=31;	// center-center of the motor screw holes for nema17
-slotWidth=18-2*M3;	// width of slots for holes
-
 nemaMount();
 
 module nemaMount(){
+	width=45;	// y axis
+	height=56;	// x axis
+	centerr=22/2;	// radius of nema axle bearing raised surface
+	motorcc=31;	// center-center of the motor screw holes for nema17
+
 	difference(){
+
 		// create nema mount
 		cube([height, width, thickness]);
 		
@@ -33,21 +33,21 @@ module nemaMount(){
 		// position slots for nema17
 		translate([height/2-motorcc/2+thickness, width/2-motorcc/2, -1])
 			rotate([0,0,180])
-			oval();
+			boltSlot();
 		translate([height/2-motorcc/2+thickness, width/2+motorcc/2, -1])
 			rotate([0,0,180])
-			oval();
+			boltSlot();
 		translate([height/2+motorcc/2-thickness, width/2-motorcc/2, -1])
-			oval();
+			boltSlot();
 		translate([height/2+motorcc/2-thickness, width/2+motorcc/2, -1])
-			oval();
+			boltSlot();
 
 	}// end difference
 
 }
 
 // slot for nema bolt mount
-module oval(){
+module boltSlot(){
 	hull(){
 		cylinder(r=M3/2, h=thickness+2);
 		translate([slotWidth, 0, 0])

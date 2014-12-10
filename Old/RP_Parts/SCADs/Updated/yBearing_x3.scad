@@ -4,11 +4,10 @@
 // http://creativecommons.org/licenses/GPL/2.0/
 include <configuration.scad>
 
-length=thickness+M3nut+linearBearing[1]+M3nut+thickness;
-
 yBearing();
 
 module yBearing(){
+	length=thickness+M3nut+linearBearing[1]+M3nut+thickness;
 
 	difference(){
 	

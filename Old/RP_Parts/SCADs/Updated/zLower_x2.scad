@@ -53,12 +53,10 @@ module zLower(){
 
 // creates a half arc negative block to remove excess upper mounting tab material from zUpper
 module mountCurve(){
-
 	difference(){
-	translate([0,0,0])
-		cube([max(frameX, 20)+2, 20, thickness+2]);
-	translate([max(frameX, 20)/2+1,0,-1])
-		cylinder(r=max(frameX, 20)/2, h=thickness+4);
+		translate([0,0,0])
+			cube([max(frameX, 20)+2, 20, thickness+2]);
+		translate([max(frameX, 20)/2+1,0,-1])
+			cylinder(r=max(frameX, 20)/2, h=thickness+4);
 	}// end difference
-
 }

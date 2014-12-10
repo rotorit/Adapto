@@ -4,13 +4,11 @@
 // http://creativecommons.org/licenses/GPL/2.0/
 include <configuration.scad>
 
-inner=2*rotaryBearing[2]+2*2;// 2 rotary bearings +2 washers
-
 // original (2 lines)
 //mirror([ 0, 1, 0 ]) yIdler();
 //translate([0, frameX, 0]) yIdler();
 
-// t00ties new version,
+// t00ties new version (3 lines)
 yIdlerBlock();
 translate([-33, 0, thickness/2])
 	yIdlerHolder(); //bottom side has thicker edges around bolt holes and nut trap
@@ -62,7 +60,7 @@ module yIdler(){
 
 // t00ties modules
 module yIdlerHolder(){
-
+	inner=2*rotaryBearing[2]+2*2;// 2 rotary bearings +2 washers
 	length=rotaryBearing[1]/2+thickness+M5nutThickness/2;
 
 	difference(){
@@ -131,6 +129,7 @@ module yIdlerHolder(){
 }
 
 module yIdlerBlock(){
+	inner=2*rotaryBearing[2]+2*2;// 2 rotary bearings +2 washers
 
 	difference(){
 

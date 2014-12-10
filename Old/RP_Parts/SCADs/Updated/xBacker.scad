@@ -11,6 +11,7 @@ module xBacker(){
 	difference(){
 
 		union(){
+
 			// channel for the Z linear bearings
 			translate([-linearBearing[2]-3/2*thickness, -thickness-linearBearing[1]/2, 0])
 				cube([linearBearing[2]*2+thickness*3, 2*thickness+linearBearing[1], linearBearing[1]/2+thickness]);
@@ -66,7 +67,6 @@ module xBacker(){
 
 		}// end union
 
-		// remove stuff
 		// x smooth rod holes
 		translate([xRodDistance/2, 65, 27+thickness+linearBearing[1]/2])
 			rotate([90, 0, 0])

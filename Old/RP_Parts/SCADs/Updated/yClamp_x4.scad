@@ -4,13 +4,13 @@
 // http://creativecommons.org/licenses/GPL/2.0/
 include <configuration.scad>
 
-width=frameX;
-
 // Printing on its side will make the skin continuous over the hump and much stronger
 rotate([0,90,0])
 	yRodClamp();
 
 module yRodClamp(){
+	width=frameX;
+
 	difference(){
 
 		union(){
