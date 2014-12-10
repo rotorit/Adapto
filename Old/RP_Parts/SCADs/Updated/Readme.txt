@@ -8,6 +8,11 @@ Originally quite a few configuration values were hard-coded in the scads, this h
 
 t00tie and GearheadRed would love your feedback on these, both criticisms and improvement suggestions.
 
+Files with alternates:
+
+	yIdler_x1.scad
+	zMotor_x2.scad
+
 
 Making the STLs
 ---------------
