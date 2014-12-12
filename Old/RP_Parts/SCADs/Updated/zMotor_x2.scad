@@ -2,8 +2,9 @@
 // After an stl designed by RoTorIT
 // Adapto is licensed under the Creative Commons - GNU GPL license.
 // http://creativecommons.org/licenses/GPL/2.0/
-include <configuration.scad>
-use <nemaMount.scad>
+include <./inc/configuration.scad>
+use <./inc/polyarc.scad>
+use <./inc/nemaMount.scad>
 
 // A motor holder for a nema17 stepper motor
 // these are 1.7 inches (ugh) square, any length and have 4 M3 holes in a 31mm square centre-centre
@@ -17,7 +18,7 @@ zMotor();
 
 // based on original
 module zMotor(){
-width=thickness+screwR+thickness*2+45+thickness*2+screwR+thickness;
+width=thickness+M5+thickness*2+45+thickness*2+M5+thickness;
 
 	difference(){
 
@@ -53,7 +54,7 @@ width=thickness+screwR+thickness*2+45+thickness*2+screwR+thickness;
 			hull(){
 				translate([thickness, -45/2, 0])
 					rotate([0,0,180])
-					cube([thickness, thickness+screwR+thickness*2, thickness]);
+					cube([thickness, thickness+M5+thickness*2, thickness]);
 				translate([thickness+9+56, -thickness-45/2, 0])
 					cube([1, thickness, thickness]);
 			}
@@ -61,7 +62,7 @@ width=thickness+screwR+thickness*2+45+thickness*2+screwR+thickness;
 				hull(){
 					translate([thickness, -45/2, 0])
 						rotate([0,0,180])
-						cube([thickness, thickness+screwR+thickness*2, thickness]);
+						cube([thickness, thickness+M5+thickness*2, thickness]);
 					translate([thickness+9+56, -thickness-45/2, 0])
 						cube([1, thickness, thickness]);
 				};
@@ -69,13 +70,13 @@ width=thickness+screwR+thickness*2+45+thickness*2+screwR+thickness;
 		}// end union
 
 		// holes to attach to the frame
-		translate([-1, width/2-screwR-thickness, boltOffset])
+		translate([-1, width/2-M5-thickness, frameY/2])
 			rotate([0,90,0])
-			cylinder(r=screwR,h=thickness+2);
+			polycyl(d=M5,h=thickness+2);
 		mirror([0,1,0])
-			translate([-1, width/2-screwR-thickness, boltOffset])
+			translate([-1, width/2-M5-thickness, frameY/2])
 				rotate([0,90,0])
-				cylinder(r=screwR,h=thickness+2);
+				polycyl(d=M5,h=thickness+2);
 
 	}// end difference
 
@@ -101,36 +102,38 @@ twoscrew=false;
 			translate([0, -31/2-M3/2-thickness, 0])
 				cube([6+thickness, 31+M3+thickness*2, thickness]);
 			translate([6+thickness, 31/2, 0])
-				cylinder(r=M3/2+thickness, h=thickness);
+				polycyl(d=M3+thickness*2, h=thickness);
 			translate([6+thickness, -31/2, 0])
-				cylinder(r=M3/2+thickness, h=thickness);
+				polycyl(d=M3+thickness*2, h=thickness);
 
 			// add the 3rd screw mount if twoscrew = false
 			if(twoscrew==false){
 				translate([6+thickness, 31/2-M3/2, 0])
 					cube([31, M3+thickness, thickness]);
 				translate([6+thickness+31, 31/2, 0])
-					cylinder(r=M3/2+thickness, h=thickness);
+					polycyl(d=M3+thickness*2, h=thickness);
 			}
 		}// end union
 	
 		// holes for the motor screws along frame
 		translate([6+thickness, 31/2, -1])
-			cylinder(r=M3/2, h=thickness+2);
+			polycyl(d=M3, h=thickness+2);
 		translate([6+thickness, -31/2, -1])
-			cylinder(r=M3/2, h=thickness+2);
+			polycyl(d=M3, h=thickness+2);
 
 		// add hole for 3rd screw mount if twoscrew = false
 		if(twoscrew==false){
 			translate([6+thickness+31, 31/2, -1])
-				cylinder(r=M3/2, h=thickness+2);
+				polycyl(d=M3, h=thickness+2);
 		}
 
 		// holes to attach to the frame. These are centered 6mm above the motor => 
 		// 6+48=54mm over the table is half way up the side of the Y frame -> [X]
 		translate([-1, width/2+thickness, 6])
-			rotate([0, 90, 0]) cylinder(r=M5/2, h=thickness+2);
+			rotate([0, 90, 0])
+			polycyl(d=M5, h=thickness+2);
 		translate([-1, -width/2-thickness, 6])
-			rotate([0, 90, 0]) cylinder(r=M5/2, h=thickness+2);
+			rotate([0, 90, 0])
+			polycyl(d=M5, h=thickness+2);
 	}// end difference
 }

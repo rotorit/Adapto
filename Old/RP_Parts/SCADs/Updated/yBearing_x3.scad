@@ -2,26 +2,36 @@
 // After an stl designed by RoTorIT
 // Adapto is licensed under the Creative Commons - GNU GPL license.
 // http://creativecommons.org/licenses/GPL/2.0/
-include <configuration.scad>
+include <./inc/configuration.scad>
+use <./inc/polyarc.scad>
 
 yBearing();
 
 module yBearing(){
-	length=thickness+M3nut+linearBearing[1]+M3nut+thickness;
+	// set a defined mount plate bolt spacing(can handle up to lm12uu easily)
+	length=M3nut*2+25+M3nut*2;
 
 	difference(){
 	
 		union(){
-	
+
+			// create the mount plate and bearing trap
 			cube([length, thickness, linearBearing[2]]);
 			translate([length/2, -linearBearing[1]/2+2, 0])
-				cylinder(r=linearBearing[1]/2+thickness, h=linearBearing[2]);
+				polycyl(d=linearBearing[1]+thickness*2, h=linearBearing[2]);
+
+			// the linear bearing
+			%translate([length/2, -linearBearing[1]/2+2, 0])
+				polycyl(d=linearBearing[1], h=linearBearing[2]);
+			// the smooth rod
+			%translate([length/2, -linearBearing[1]/2+2, -35])
+				polycyl(d=smoothRod, h=100);
 	
 		}// end union
 	
-		// linear bearing
+		// linear bearing channel
 		translate([length/2, -linearBearing[1]/2+2, -1])
-			cylinder(r=linearBearing[1]/2, h=linearBearing[2]+2);
+			polycyl(d=linearBearing[1], h=linearBearing[2]+2);
 	
 		// flatten mounting surface
 		translate([-1, thickness, -1])
@@ -30,18 +40,18 @@ module yBearing(){
 		// bolt holes
 		translate([4, -1, linearBearing[2]/2])
 			rotate([-90, 0, 0])
-			cylinder(r=M3/2, h=thickness+2);
+			polycyl(d=M3, h=thickness+2);
 		translate([length-4, -1, linearBearing[2]/2])
 			rotate([-90, 0, 0])
-			cylinder(r=M3/2, h=thickness+2);
+			polycyl(d=M3, h=thickness+2);
 	
 		// nut traps
 		translate([4, -1, linearBearing[2]/2])
 			rotate([-90, 90, 0])
-			cylinder(r=M3nut/2, h=2+1, $fn=6);
+			polynut(d=M3nut, h=2+1);
 		translate([length-4, -1, linearBearing[2]/2])
 			rotate([-90, 90, 0])
-			cylinder(r=M3nut/2, h=2+1, $fn=6);
+			polynut(d=M3nut, h=2+1);
 	
 		// split to allow bearings to press in nicely.
 		translate([length/2-1, -2*linearBearing[1], -1])

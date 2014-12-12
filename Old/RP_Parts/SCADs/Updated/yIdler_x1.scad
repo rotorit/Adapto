@@ -2,7 +2,8 @@
 // After an stl designed by RoTorIT
 // Adapto is licensed under the Creative Commons - GNU GPL license.
 // http://creativecommons.org/licenses/GPL/2.0/
-include <configuration.scad>
+include <./inc/configuration.scad>
+use <./inc/polyarc.scad>
 
 // original (2 lines)
 //mirror([ 0, 1, 0 ]) yIdler();
@@ -30,7 +31,7 @@ module yIdler(){
 			hull(){
 				cube([frameX/2, frameX+thickness, thickness]);
 				translate([frameX/2, frameX/2, 0])
-					cylinder(r=frameX/2, h=thickness);
+					polycyl(d=frameX, h=thickness);
 			}
 			// support brace
 			hull(){
@@ -44,15 +45,15 @@ module yIdler(){
 
 		// bearing bolt hole
 		translate([frameX/2, frameX/2, -1])
-			cylinder(r=M8/2, h=thickness+2);
+			polycyl(d=M8, h=thickness+2);
 
 		// holes to attach to the frame
 		translate([-thickness-1, frameX/2+thickness, frameX/2+M5/2])
 			rotate([0,90,0])
-			cylinder(r=M5/2, h=thickness+2);
+			polycyl(d=M5, h=thickness+2);
 		translate([-frameX/2-thickness, thickness+1, frameX/2])
 			rotate([90,0,0])
-			cylinder(r=M5/2, h=thickness+2);
+			polycyl(d=M5, h=thickness+2);
 
 	}// end difference
 
@@ -81,42 +82,42 @@ module yIdlerHolder(){
 			// tensioner arms curved ends
 			translate([0, inner/2, thickness/2+M5/2])
 				rotate([-90, 0, 0])
-				cylinder(r=M8/2+thickness, h=thickness);
+				polycyl(d=M8+thickness*2, h=thickness);
 			mirror([0,1,0])
 				translate([0, inner/2, thickness/2+M5/2])
 				rotate([-90, 0, 0])
-				cylinder(r=M8/2+thickness, h=thickness);
+				polycyl(d=M8+thickness*2, h=thickness);
 
 			// rotary bearings for reference
 			%translate([0, 0, thickness/2+M5/2])
 				rotate([-90, 0, 0])
-				cylinder(r=rotaryBearing[1]/2, h=rotaryBearing[2]);
+				polycyl(d=rotaryBearing[1], h=rotaryBearing[2]);
 			mirror([0,1,0])
 				%translate([0, 0, thickness/2+M5/2])
 				rotate([-90, 0, 0])
-				cylinder(r=rotaryBearing[1]/2, h=rotaryBearing[2]);
+				polycyl(d=rotaryBearing[1], h=rotaryBearing[2]);
 
 		}// end union
 
 		// tensioning bolt hole
 		translate([length-1, 0, thickness/2+M5/2])
 			rotate([0, 90, 0])
-			cylinder(r=M5/2, h=thickness+2);
+			polycyl(d=M5, h=thickness+2);
 
 		// tensioner arm M5 nut trap
 		translate([length-M5nutThickness/2, 0, thickness/2+M5/2])
 			rotate([90, 0, 0])
 			rotate([0, 90, 0])
-			cylinder(r=M5nut/2, h=M5nutThickness, $fn=6);
+			polynut(d=M5nut, h=M5nutThickness);
 
 		// bearing bolt holes
 		translate([0, inner/2-1, thickness/2+M5/2])
 			rotate([-90, 0, 0])
-			cylinder(r=M8/2, h=2*thickness+2);
+			polycyl(d=M8, h=2*thickness+2);
 		mirror([0,1,0])
 			translate([0, inner/2-1, thickness/2+M5/2])
 			rotate([-90, 0, 0])
-			cylinder(r=M8/2, h=2*thickness+2);
+			polycyl(d=M8, h=2*thickness+2);
 
 		// cut the humps off the tensioner curved ends
 		translate([-25, -25, -50-thickness/2])
@@ -149,22 +150,22 @@ module yIdlerBlock(){
 					cube([thickness, inner, 2*thickness]);
 				translate([frameX/2, 0, frameX/2+2*thickness])
 					rotate([0, 90, 0])
-					cylinder(r=(M5+thickness)/2, h=thickness);
+					polycyl(d=M5+thickness*2, h=thickness);
 			}
 
 			//base block curved arm ends
 			translate([0, inner/2+thickness*1.5+M5/2+.5, 0])
-				cylinder(r=M5/2+thickness/2, h=2*thickness);
+				polycyl(d=M5+thickness, h=2*thickness);
 			mirror([0,1,0])
 				translate([0, inner/2+thickness*1.5+M5/2+.5, 0])
-				cylinder(r=M5/2+thickness/2, h=2*thickness);
+				polycyl(d=M5+thickness, h=2*thickness);
 			
 		}// end union
 
 		// tensioner hole
 		translate([-1, 0, thickness])
 			rotate([0, 90, 0])
-			cylinder(r=M5/2, h=frameX+thickness+2);
+			polycyl(d=M5, h=frameX+thickness+2);
 
 		// create tensioner cavity
 		translate([-1, -inner/2-thickness-.5, -1])
@@ -173,12 +174,12 @@ module yIdlerBlock(){
 		// holes to attach to the frame
 		translate([frameX/2-1, 0, frameX/2+2*thickness])
 			rotate([0, 90, 0])
-			cylinder(r=M5/2, h=thickness+2);
+			polycyl(d=M5, h=thickness+2);
 		translate([0, inner/2+thickness*1.5+M5/2+.5, -1])
-			cylinder(r=M5/2, h=2*thickness+2);
+			polycyl(d=M5, h=2*thickness+2);
 		mirror([0,1,0])
 			translate([0, inner/2+thickness*1.5+M5/2+.5, -1])
-			cylinder(r=M5/2, h=2*thickness+2);
+			polycyl(d=M5, h=2*thickness+2);
 
 	}// end difference
 

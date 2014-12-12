@@ -16,7 +16,7 @@ Files with alternates:
 
 Making the STLs
 ---------------
-Edit configuration.scad to suit your needs(github copy currently is configured for GearheadRed's printer and probably needs changes to suit most users). Check the resulting parts for sanity.  Ask t00tie or GearheadRed for help if you need it.
+Edit ./inc/configuration.scad to suit your needs(github copy currently is configured for GearheadRed's printer and probably needs changes to suit most users). Check the resulting parts for sanity.  Ask t00tie or GearheadRed for help if you need it.
 
 On linux make the stls by typing one of
 make -k

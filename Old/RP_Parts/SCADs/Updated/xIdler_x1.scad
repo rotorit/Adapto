@@ -2,8 +2,9 @@
 // After an stl designed by RoTorIT
 // Adapto is licensed under the Creative Commons - GNU GPL license.
 // http://creativecommons.org/licenses/GPL/2.0/
-include <configuration.scad>
-use <xBacker.scad>
+include <./inc/configuration.scad>
+use <./inc/polyarc.scad>
+use <./inc/xBacker.scad>
 
 xIdler();
 
@@ -22,25 +23,25 @@ module xIdler(){
 					cube([1, (thickness+.8+M8/2)*2+4, 22]);
 				translate([-44, 52, 27+thickness+linearBearing[1]/2+thickness+M8/2+16])
 					rotate([0, 90, 0])
-					cylinder(r=thickness+.8+M8/2, h=22);
+					polycyl(d=M8+thickness*2, h=22);
 			}
 
 		}// end union
 		
 		// idler slot hole
 		hull(){
-			translate([-45, 52, 27+thickness+linearBearing[1]/2+thickness+M8/2])
+			translate([-45, 52, 27+thickness+linearBearing[1]/2+thickness+M8])
 				rotate([0, 90, 0])
-				cylinder(r=M8/2, h=34);
+				polycyl(d=M8, h=34);
 			translate([-45, 52, 27+thickness+linearBearing[1]/2+thickness+M8/2+16])
 				rotate([0, 90, 0])
-				cylinder(r=M8/2, h=34);
+				polycyl(d=M8, h=34);
 		}
 
 		// carve washer space at base of idler slot
-		translate([-22, 52, 27+thickness+linearBearing[1]/2+thickness+M8/2])
+		translate([-22, 52, 27+thickness+linearBearing[1]/2+thickness+M8])
 			rotate([0, 90, 0])
-			cylinder(r=M8, h=11);
+			polycyl(d=18, h=11);
 	
 	}// end difference
 

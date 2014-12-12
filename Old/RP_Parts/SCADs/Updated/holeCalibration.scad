@@ -1,7 +1,8 @@
 // Copyright (C) 2012 t00tie
 // Adapto is licensed under the Creative Commons - GNU GPL license.
 // http://creativecommons.org/licenses/GPL/2.0/
-include <configuration.scad>
+include <./inc/configuration.scad>
+use <./inc/polyarc.scad>
 
 // hole size calibration object
 // M8 has a block on top of the arch
@@ -26,61 +27,62 @@ module holes(){
 			// the arches
 			// M8+block
 			translate([0, 0, 0])
-				cylinder(r=thickness+M8/2, h=thickness);
+				polycyl(d=M8+thickness*2, h=thickness);
 			translate([-thickness/2, -thickness/2-M8, 0])
 				cube([thickness, thickness, thickness]);
 
 			// M5
-			translate([M8/2+1.25*thickness+M5/2, M5/2, 0])
-				cylinder(r=thickness+M5/2, h=thickness);
+			translate([M8/2+2*thickness+M5/2, M5/2, 0])
+				polycyl(d=M5+thickness*2, h=thickness);
 
 			// M3
-			translate([M8/2+1.25*thickness+M5/2+1.5*thickness+M3/2, M3, 0])
-				cylinder(r=thickness+M3/2, h=thickness);
+			translate([M8/2+2*thickness+M5/2+2*thickness+M3/2, M3, 0])
+				polycyl(d=M3+thickness*2, h=thickness);
 
 			// zRod
-			translate([M8/2+1.5*thickness+M5/2+1.5*thickness+M3/2+1.25*thickness+zRod/2, 0,0])
-				cylinder(r=thickness+zRod/2, h=thickness);
+			translate([M8/2+2*thickness+M5/2+2*thickness+M3/2+2*thickness+(zRod+2)/2, 0,0])
+				polycyl(d=zRod+2+thickness*2, h=thickness);
 
 			// flat base
 			hull(){
 				translate([-thickness-M8/2, 0, 0])
 					cube([thickness, thickness+M8/2, thickness]);
-				translate([M8/2+1.5*thickness+M5/2+1.5*thickness+M3/2+1.25*thickness+zRod, 0, 0])
+				translate([M8/2+2*thickness+M5/2+2*thickness+M3/2+2*thickness+zRod+2, 0, 0])
 					cube([thickness, thickness+M8/2, thickness]);
 			}
 
 		}// end union
 
+		// the holes and nut traps
 		// M8
 		translate([0, 0, -1])
-			cylinder(r=M8/2, h=thickness/2+2);
+			polycyl(d=M8, h=thickness/2+2);
 		translate([0, 0, thickness/2])
-			cylinder(r=M8nut/2, h=thickness/2+2, $fn=6);
+			polynut(d=M8nut, h=thickness/2+2);
 
 		// M5
-		translate([M8/2+1.25*thickness+M5/2, M5/2, -1])
-			cylinder(r=M5/2, h=thickness/2+2);
-		translate([M8/2+1.25*thickness+M5/2, M5/2, thickness/2])
-			cylinder(r=M5nut/2, h=thickness/2+2, $fn=6);
+		translate([M8/2+2*thickness+M5/2, M5/2, -1])
+			polycyl(d=M5, h=thickness/2+2);
+		translate([M8/2+2*thickness+M5/2, M5/2, thickness/2])
+			polynut(d=M5nut, h=thickness/2+2);
 
 		// M3
-		translate([M8/2+1.25*thickness+M5/2+1.5*thickness+M3/2, M3, -1])
-			cylinder(r=M3/2, h=thickness/2+2);
-		translate([M8/2+1.25*thickness+M5/2+1.5*thickness+M3/2, M3, thickness/2])
-			cylinder(r=M3nut/2, h=thickness/2+2, $fn=6);
+		translate([M8/2+2*thickness+M5/2+2*thickness+M3/2, M3, -1])
+			polycyl(d=M3, h=thickness/2+2);
+		translate([M8/2+2*thickness+M5/2+2*thickness+M3/2, M3, thickness/2])
+			polynut(d=M3nut, h=thickness/2+2);
 
 		// zRod
-		translate([M8/2+1.5*thickness+M5/2+1.5*thickness+M3/2+1.25*thickness+zRod/2, 0, -1])
-			cylinder(r=zRod/2, h=thickness/2+2);
-		translate([M8/2+1.5*thickness+M5/2+1.5*thickness+M3/2+1.25*thickness+zRod/2, 0, thickness/2])
-			cylinder(r=zRodnut/2, h=thickness/2+2, $fn=6);
+		translate([M8/2+2*thickness+M5/2+2*thickness+M3/2+2*thickness+(zRod+2)/2, 0, -1])
+			polycyl(d=zRod, h=thickness/2+2);
+		translate([M8/2+2*thickness+M5/2+2*thickness+M3/2+2*thickness+(zRod+2)/2, 0, thickness/2])
+			polynut(d=zRodnut, h=thickness/2+2);
 
-		// flat base
+		// the flat base
 		hull(){
 			translate([-thickness-M8/2, thickness+M8/2, -1])
 				cube([thickness, thickness, thickness+2]);
-			translate([M8/2+1.5*thickness+M5/2+1.5*thickness+M3/2+1.25*thickness+zRod, thickness+M8/2, -1])
+			translate([M8/2+2*thickness+M5/2+2*thickness+M3/2+2*thickness+zRod+2, thickness+M8/2, -1])
 				cube([thickness, thickness, thickness+2]);
 		}
 

@@ -2,7 +2,8 @@
 // After an stl designed by RoTorIT
 // Adapto is licensed under the Creative Commons - GNU GPL license.
 // http://creativecommons.org/licenses/GPL/2.0/
-include <configuration.scad>
+include <./inc/configuration.scad>
+use <./inc/polyarc.scad>
 
 yMotor();
 
@@ -50,28 +51,28 @@ module yMotor(){
 		// frame mount holes
 		translate([-frameX/2, thickness+14, thickness+M5])
 			rotate([90,0,0])
-			cylinder(r=M5/2, h=thickness+2);
+			polycyl(d=M5, h=thickness+2);
 		translate([-frameX/2, thickness+14, 48+thickness-M5])
 			rotate([90,0,0])
-			cylinder(r=M5/2, h=thickness+2);
+			polycyl(d=M5, h=thickness+2);
 
 		// inset frame mount hole
 		translate([-1, thickness+13+frameY/2, 48/2+thickness])
 			rotate([0,90,0])
-			cylinder(r=M5/2, h=thickness+2);
+			polycyl(d=M5, h=thickness+2);
 		translate([thickness/2, thickness+13+frameY/2, 48/2+thickness])
 			rotate([0,90,0])
-			cylinder(r=M5, h=thickness);
+			polycyl(d=M5nut*2, h=thickness);
 
 		// nema holes
 		translate([thickness+6.5,thickness+5.5,-1])
-			cylinder(r=M3/2, h=thickness+2);
+			polycyl(d=M3, h=thickness+2);
 		translate([thickness+6.5+31,thickness+5.5,-1])
-			cylinder(r=M3/2, h=thickness+2);
+			polycyl(d=M3, h=thickness+2);
 		translate([thickness+6.5,thickness+5.5+31,-1])
-			cylinder(r=M3/2, h=thickness+2);
+			polycyl(d=M3, h=thickness+2);
 		translate([thickness+6.5+31/2,thickness+5.5+31/2,-1])
-			cylinder(r=11.5, h=thickness+2);
+			polycyl(d=24, h=thickness+2);
 
 	}// end difference
 

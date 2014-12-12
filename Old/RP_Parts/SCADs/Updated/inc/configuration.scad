@@ -20,37 +20,30 @@
 frameX=20;// width of the frame material(alu, wood etc.)
 frameY=20;// height of the frame material
 
-// Screws, Bolts, and Rods
-boltOuterRadius=5/2;// outer radius of bolt threads, 5 for M5 bolts
-boltLength=60;// bolt length without head (threaded part only)
-washerOuterRadius=10/2;// washers that fit the bolts
-washerLength=10;// this is large because it is used to make holes for washers
-boltOffset=frameX/2;// How far in the bolt holes go, may need tweaking if frameX!=frameY
-screwR=5.3/2;// Defaults for M5 screws
-
 // Print the hole_calibration.scad object to dial in the next 6 settings
 // Google found http://www.fairburyfastener.com/xdims_metric_nuts.htm
 M8=8.4;// diameter of M8 threaded rod
 M5=5.3;// diameter of M5 threaded rod
 M3=3.4;// diameter of M3 threaded rod
-M8nut=15.2;// diameter of M8 nut using $fn=6
-M5nut=9.9;// diameter of M5 nut using $fn=6
-M3nut=6.9;// diameter of M3 nut using $fn=6
+M8nut=13;// diameter of M8 nut flat to flat
+M5nut=8;// diameter of M5 nut flat to flat
+M3nut=5.5;// diameter of M3 nut flat to flat
 
-M8nutThickness=6.8;// thickness of a standard M8 nut
-M5nutThickness=4.7;// thickness of a standard M5 nut
+M8nutThickness=6.8;// thickness of a standard M8 nut(nylock is 8mm)
+M5nutThickness=4.7;// thickness of a standard M5 nut(nylock is 5mm)
 M3nutThickness=2.4;// thickness of a standard M3 nut
 
 // Acme Linear Screw and Nut
 ACME14=6.4;// diameter of 1/4 inch ACME threaded rod in mm
-ACME14nut=14.5;// diameter of ACME 1/4 inch nut using $fn=6 in mm
+ACME14nut=12.7;// diameter of ACME 1/4 inch nut flat to flat in mm
 ACME14nutThickness=6.5;// thickness of ACME 1/4 inch nut in mm
 
 // Linear Bearings
 // lm__uu is IDxODxL
 lm8uu=[8, 15, 24];
 lm10uu=[10, 19, 29];
-lm10luu=[10, 19.1, 55];
+lm10luu=[10, 19, 55];
+lm12uu=[12, 21, 30];
 
 //rotary bearings
 // 608__ is IDxODxL

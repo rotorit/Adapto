@@ -2,9 +2,11 @@
 // After an stl designed by RoTorIT
 // Adapto is licensed under the Creative Commons - GNU GPL license.
 // http://creativecommons.org/licenses/GPL/2.0/
-include <configuration.scad>
+include <./inc/configuration.scad>
+use <./inc/polyarc.scad>
+
 // This is rather quick'n'dirty but the upper and lower are so similar it's smart
-use <zUpper_x2.scad>
+use <./zUpper_x2.scad>
 
 zLower();
 
@@ -19,7 +21,7 @@ module zLower(){
 			translate([40-max(frameX, 20)/2, -40, 0])
 				cube([max(frameX, 20), 20, thickness]);
 			translate([40, -40, 0])
-				cylinder(r=max(frameX, 20)/2, h=thickness);
+				polycyl(d=max(frameX*2, 40)/2, h=thickness);
 
 			// cover upper tab mount hole
 			translate([40-max(frameX, 20)/2, 0, 35])
@@ -35,12 +37,12 @@ module zLower(){
 
 		// add bottom mounting tab hole
 		translate([40, -40, -1])
-			cylinder(r=screwR, h=thickness+2);
+			polycyl(d=M5*2, h=thickness+2);
 
 		// add upper mounting tab hole
 		translate([40, thickness+1, 32])
 			rotate([90,0,0])
-			cylinder(r=screwR, h=thickness+2);
+			polycyl(d=M5*2, h=thickness+2);
 
 		// remove excess upper mounting tab material from zUpper
 		translate([29, thickness+1, 32])
@@ -57,6 +59,6 @@ module mountCurve(){
 		translate([0,0,0])
 			cube([max(frameX, 20)+2, 20, thickness+2]);
 		translate([max(frameX, 20)/2+1,0,-1])
-			cylinder(r=max(frameX, 20)/2, h=thickness+4);
+			polycyl(d=max(frameX*2, 40)/2, h=thickness+4);
 	}// end difference
 }

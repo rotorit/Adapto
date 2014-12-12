@@ -2,7 +2,8 @@
 // After an stl designed by RoTorIT
 // Adapto is licensed under the Creative Commons - GNU GPL license.
 // http://creativecommons.org/licenses/GPL/2.0/
-include <configuration.scad>
+include <./inc/configuration.scad>
+use <./inc/polyarc.scad>
 
 zUpper();
 
@@ -25,7 +26,7 @@ module zUpper(){
 				translate([40-max(frameX, 20)/2, -smoothRodOffset, 0])
 					cube([max(frameX, 20)+0*(smoothRod+2*thickness), smoothRod/2+smoothRodOffset, 17+thickness]);
 				translate([40, -(smoothRodOffset), 0])
-					cylinder(r=smoothRod/2+thickness, h=17+thickness);
+					polycyl(d=smoothRod+thickness*2, h=17+thickness);
 				translate([40-max(frameX, 20)/2, -30, 0])
 					cube([max(frameX, 20), 30, thickness]);
 			}
@@ -35,13 +36,13 @@ module zUpper(){
 		// holes on back plate
 		translate([frameX/2, thickness+1, thickness+frameY/2])
 			rotate([90,0,0])
-			cylinder(r=screwR, h=thickness+2);
+			polycyl(d=M5, h=thickness+2);
 		translate([80-frameX/2, thickness+1, thickness+frameY/2])
 			rotate([90,0,0])
-			cylinder(r=screwR, h=thickness+2);
+			polycyl(d=M5, h=thickness+2);
 		translate([80/2, thickness+1, 50-frameX/2])
 			rotate([90,0,0])
-			cylinder(r=screwR, h=thickness+2);
+			polycyl(d=M5, h=thickness+2);
 
 		// cut the corners of the back and top plates
 		translate([0, 0, -1]) rotate([0, 0, -90-45])
@@ -55,7 +56,7 @@ module zUpper(){
 
 		//hole for smooth rod
 		translate([40, -smoothRodOffset, -1])
-			cylinder(r=smoothRod/2, h=17+thickness+2);
+			polycyl(d=smoothRod, h=17+thickness+2);
 
 	}//end difference
 

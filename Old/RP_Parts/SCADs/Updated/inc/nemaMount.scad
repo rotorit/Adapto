@@ -2,7 +2,8 @@
 // After an stl designed by RoTorIT
 // Adapto is licensed under the Creative Commons - GNU GPL license.
 // http://creativecommons.org/licenses/GPL/2.0/
-include <configuration.scad>
+include <./configuration.scad>
+use <./polyarc.scad>
 
 slotWidth=18-2*M3;	// width of slots for holes
 
@@ -14,7 +15,7 @@ nemaMount();
 module nemaMount(){
 	width=45;	// y axis
 	height=56;	// x axis
-	centerr=22/2;	// radius of nema axle bearing raised surface
+	mcenter=22;	// diameter of nema17 axle bearing raised surface
 	motorcc=31;	// center-center of the motor screw holes for nema17
 
 	difference(){
@@ -25,9 +26,9 @@ module nemaMount(){
 		// cut opening for nema17 axle
 		hull(){
 			translate([height/2-slotWidth/2, width/2, -1])
-				cylinder(r=centerr+.5, h=thickness+2);
+				polycyl(d=mcenter+.1, h=thickness+2);
 			translate([height/2+slotWidth/2, width/2, -1])
-				cylinder(r=centerr+.5, h=thickness+2);
+				polycyl(d=mcenter+.1, h=thickness+2);
 		}
 
 		// position slots for nema17
@@ -49,8 +50,8 @@ module nemaMount(){
 // slot for nema bolt mount
 module boltSlot(){
 	hull(){
-		cylinder(r=M3/2, h=thickness+2);
+		polycyl(d=M3, h=thickness+2);
 		translate([slotWidth, 0, 0])
-			cylinder(r=M3/2, h=thickness+2);
+			polycyl(d=M3, h=thickness+2);
 	}
 }
