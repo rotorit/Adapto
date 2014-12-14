@@ -16,5 +16,5 @@ module polycyl(d, h){
 
 // proper poly compensation for a 6 sided nut(measured flat to flat)
 module polynut(d, h){
-	cylinder(r=(d/2)/cos(180/6), h=h, $fn=6);
+	cylinder(r=(d/2)/cos(180/6)+0.05, h=h, $fn=6);
 }

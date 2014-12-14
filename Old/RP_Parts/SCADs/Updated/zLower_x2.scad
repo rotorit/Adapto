@@ -37,12 +37,12 @@ module zLower(){
 
 		// add bottom mounting tab hole
 		translate([40, -40, -1])
-			polycyl(d=M5*2, h=thickness+2);
+			polycyl(d=M5, h=thickness+2);
 
 		// add upper mounting tab hole
 		translate([40, thickness+1, 32])
 			rotate([90,0,0])
-			polycyl(d=M5*2, h=thickness+2);
+			polycyl(d=M5, h=thickness+2);
 
 		// remove excess upper mounting tab material from zUpper
 		translate([29, thickness+1, 32])

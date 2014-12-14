@@ -124,7 +124,7 @@ module xBacker(){
 		translate([-ceil(zRodnutThickness+2)/2, 39+linearBearing[1]/2+zRod/2, thickness+(zRod+1)/2])
 			rotate([90, 0, 0])
 			rotate([0, 90, 0])
-			polynut(d=zRodnut+.5, h=ceil(zRodnutThickness+2));
+			polynut(d=zRodnut+.4, h=ceil(zRodnutThickness+2));
 
 		// nuts traps for M3 nuts and screws to hold the x smooth rods in place
 		translate([xRodDistance/2, linearBearing[1]/2+50, -1])

@@ -32,22 +32,22 @@ module holes(){
 				cube([thickness, thickness, thickness]);
 
 			// M5
-			translate([M8/2+2*thickness+M5/2, M5/2, 0])
+			translate([M8/2+1.5*thickness+M5/2, M5/2, 0])
 				polycyl(d=M5+thickness*2, h=thickness);
 
 			// M3
-			translate([M8/2+2*thickness+M5/2+2*thickness+M3/2, M3, 0])
+			translate([M8/2+1.5*thickness+M5/2+2*thickness+M3/2, M3, 0])
 				polycyl(d=M3+thickness*2, h=thickness);
 
 			// zRod
-			translate([M8/2+2*thickness+M5/2+2*thickness+M3/2+2*thickness+(zRod+2)/2, 0,0])
+			translate([M8/2+1.5*thickness+M5/2+2*thickness+M3/2+2*thickness+(zRod+2)/2, 0,0])
 				polycyl(d=zRod+2+thickness*2, h=thickness);
 
 			// flat base
 			hull(){
 				translate([-thickness-M8/2, 0, 0])
 					cube([thickness, thickness+M8/2, thickness]);
-				translate([M8/2+2*thickness+M5/2+2*thickness+M3/2+2*thickness+zRod+2, 0, 0])
+				translate([M8/2+1.5*thickness+M5/2+2*thickness+M3/2+2*thickness+zRod+2, 0, 0])
 					cube([thickness, thickness+M8/2, thickness]);
 			}
 
@@ -61,28 +61,28 @@ module holes(){
 			polynut(d=M8nut, h=thickness/2+2);
 
 		// M5
-		translate([M8/2+2*thickness+M5/2, M5/2, -1])
+		translate([M8/2+1.5*thickness+M5/2, M5/2, -1])
 			polycyl(d=M5, h=thickness/2+2);
-		translate([M8/2+2*thickness+M5/2, M5/2, thickness/2])
+		translate([M8/2+1.5*thickness+M5/2, M5/2, thickness/2])
 			polynut(d=M5nut, h=thickness/2+2);
 
 		// M3
-		translate([M8/2+2*thickness+M5/2+2*thickness+M3/2, M3, -1])
+		translate([M8/2+1.5*thickness+M5/2+2*thickness+M3/2, M3, -1])
 			polycyl(d=M3, h=thickness/2+2);
-		translate([M8/2+2*thickness+M5/2+2*thickness+M3/2, M3, thickness/2])
+		translate([M8/2+1.5*thickness+M5/2+2*thickness+M3/2, M3, thickness/2])
 			polynut(d=M3nut, h=thickness/2+2);
 
 		// zRod
-		translate([M8/2+2*thickness+M5/2+2*thickness+M3/2+2*thickness+(zRod+2)/2, 0, -1])
+		translate([M8/2+1.5*thickness+M5/2+2*thickness+M3/2+2*thickness+(zRod+2)/2, 0, -1])
 			polycyl(d=zRod, h=thickness/2+2);
-		translate([M8/2+2*thickness+M5/2+2*thickness+M3/2+2*thickness+(zRod+2)/2, 0, thickness/2])
+		translate([M8/2+1.5*thickness+M5/2+2*thickness+M3/2+2*thickness+(zRod+2)/2, 0, thickness/2])
 			polynut(d=zRodnut, h=thickness/2+2);
 
 		// the flat base
 		hull(){
 			translate([-thickness-M8/2, thickness+M8/2, -1])
 				cube([thickness, thickness, thickness+2]);
-			translate([M8/2+2*thickness+M5/2+2*thickness+M3/2+2*thickness+zRod+2, thickness+M8/2, -1])
+			translate([M8/2+1.5*thickness+M5/2+2*thickness+M3/2+2*thickness+zRod+2, thickness+M8/2, -1])
 				cube([thickness, thickness, thickness+2]);
 		}
 

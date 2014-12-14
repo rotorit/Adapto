@@ -27,15 +27,15 @@ M5=5.3;// diameter of M5 threaded rod
 M3=3.4;// diameter of M3 threaded rod
 M8nut=13;// diameter of M8 nut flat to flat
 M5nut=8;// diameter of M5 nut flat to flat
-M3nut=5.5;// diameter of M3 nut flat to flat
+M3nut=5.6;// diameter of M3 nut flat to flat
 
 M8nutThickness=6.8;// thickness of a standard M8 nut(nylock is 8mm)
 M5nutThickness=4.7;// thickness of a standard M5 nut(nylock is 5mm)
 M3nutThickness=2.4;// thickness of a standard M3 nut
 
 // Acme Linear Screw and Nut
-ACME14=6.4;// diameter of 1/4 inch ACME threaded rod in mm
-ACME14nut=12.7;// diameter of ACME 1/4 inch nut flat to flat in mm
+ACME14=6.5;// diameter of 1/4 inch ACME threaded rod in mm
+ACME14nut=12.8;// diameter of ACME 1/4 inch nut flat to flat in mm
 ACME14nutThickness=6.5;// thickness of ACME 1/4 inch nut in mm
 
 // Linear Bearings
