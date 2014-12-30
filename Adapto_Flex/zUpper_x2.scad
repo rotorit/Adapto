@@ -5,9 +5,12 @@
 include <./inc/configuration.scad>
 use <./inc/polyarc.scad>
 
-zUpper();
+// call including the smooth rod locking screw hole
+// change to false to omit this feature
+zUpper(lockhole=true);
 
-module zUpper(){
+
+module zUpper(lockhole){
 	smoothRodOffset=14;// how far the centre of the z smooth rods are from the frame
 
 	difference(){
@@ -34,15 +37,15 @@ module zUpper(){
 		}// end union
 
 		// holes on back plate
-		translate([frameX/2, thickness+1, thickness+frameY/2])
+		translate([frameX/2, thickness+1, frameY/2])
 			rotate([90,0,0])
-			polycyl(d=M5, h=thickness+2);
-		translate([80-frameX/2, thickness+1, thickness+frameY/2])
+			polyhole(d=M5, h=thickness+2);
+		translate([80-frameX/2, thickness+1, frameY/2])
 			rotate([90,0,0])
-			polycyl(d=M5, h=thickness+2);
+			polyhole(d=M5, h=thickness+2);
 		translate([80/2, thickness+1, 50-frameX/2])
 			rotate([90,0,0])
-			polycyl(d=M5, h=thickness+2);
+			polyhole(d=M5, h=thickness+2);
 
 		// cut the corners of the back and top plates
 		translate([0, 0, -1]) rotate([0, 0, -90-45])
@@ -54,9 +57,16 @@ module zUpper(){
 		translate([50, -1, 50]) rotate([0, 90-45, 0])
 			cube([99, thickness+2, 99]);
 
-		//hole for smooth rod
+		// hole for smooth rod
 		translate([40, -smoothRodOffset, -1])
-			polycyl(d=smoothRod, h=17+thickness+2);
+			polyhole(d=smoothRod, h=17+thickness+2);
+
+		// smooth rod locking screw
+		if (lockhole==true){
+			translate([40, -(smoothRodOffset), thickness+M3])
+				rotate([90,0,0])
+				polyhole(d=M3, h=smoothRod+thickness*2);
+		}
 
 	}//end difference
 

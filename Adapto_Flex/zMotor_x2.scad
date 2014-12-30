@@ -13,11 +13,11 @@ use <./inc/nemaMount.scad>
 // These holes are 4.8mm deep so a thickness of 5-6mm is good for M3x10 mounting screws
 // Plain M3 washers are .4-.6mm thick
 
-zMotor();
-//zMotor2();
+zMotor_Original();
+//zMotor_t00tie();
 
 // based on original
-module zMotor(){
+module zMotor_Original(){
 width=thickness+M5+thickness*2+45+thickness*2+M5+thickness;
 
 	difference(){
@@ -72,11 +72,11 @@ width=thickness+M5+thickness*2+45+thickness*2+M5+thickness;
 		// holes to attach to the frame
 		translate([-1, width/2-M5-thickness, frameY/2])
 			rotate([0,90,0])
-			polycyl(d=M5,h=thickness+2);
+			polyhole(d=M5,h=thickness+2);
 		mirror([0,1,0])
 			translate([-1, width/2-M5-thickness, frameY/2])
 				rotate([0,90,0])
-				polycyl(d=M5,h=thickness+2);
+				polyhole(d=M5,h=thickness+2);
 
 	}// end difference
 
@@ -88,7 +88,7 @@ width=thickness+M5+thickness*2+45+thickness*2+M5+thickness;
 // NOTE! I have not checked whether this is compatible with the existing X ends, use at your own risk (test and report back please!)
 // You could make an even smaller version by only fixing the motor with 2 screws
 // You want this to fit so that the feet and the Z motor are both touching the table at the same time
-module zMotor2(){
+module zMotor_t00tie(){
 width=45;
 twoscrew=false;
 
@@ -117,23 +117,23 @@ twoscrew=false;
 	
 		// holes for the motor screws along frame
 		translate([6+thickness, 31/2, -1])
-			polycyl(d=M3, h=thickness+2);
+			polyhole(d=M3, h=thickness+2);
 		translate([6+thickness, -31/2, -1])
-			polycyl(d=M3, h=thickness+2);
+			polyhole(d=M3, h=thickness+2);
 
 		// add hole for 3rd screw mount if twoscrew = false
 		if(twoscrew==false){
 			translate([6+thickness+31, 31/2, -1])
-				polycyl(d=M3, h=thickness+2);
+				polyhole(d=M3, h=thickness+2);
 		}
 
 		// holes to attach to the frame. These are centered 6mm above the motor => 
 		// 6+48=54mm over the table is half way up the side of the Y frame -> [X]
 		translate([-1, width/2+thickness, 6])
 			rotate([0, 90, 0])
-			polycyl(d=M5, h=thickness+2);
+			polyhole(d=M5, h=thickness+2);
 		translate([-1, -width/2-thickness, 6])
 			rotate([0, 90, 0])
-			polycyl(d=M5, h=thickness+2);
+			polyhole(d=M5, h=thickness+2);
 	}// end difference
 }

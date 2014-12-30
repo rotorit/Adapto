@@ -5,14 +5,14 @@
 include <./inc/configuration.scad>
 use <./inc/polyarc.scad>
 
-// original (2 lines)
-//mirror([ 0, 1, 0 ]) yIdler();
-//translate([0, frameX, 0]) yIdler();
-
 // t00ties new version (3 lines)
 yIdlerBlock();
 translate([-33, 0, thickness/2])
 	yIdlerHolder(); //bottom side has thicker edges around bolt holes and nut trap
+
+// Original Design (2 lines)
+//mirror([ 0, 1, 0 ]) yIdler();
+//translate([0, frameX, 0]) yIdler();
 
 // original module
 module yIdler(){
@@ -45,15 +45,15 @@ module yIdler(){
 
 		// bearing bolt hole
 		translate([frameX/2, frameX/2, -1])
-			polycyl(d=M8, h=thickness+2);
+			polyhole(d=M8, h=thickness+2);
 
 		// holes to attach to the frame
 		translate([-thickness-1, frameX/2+thickness, frameX/2+M5/2])
 			rotate([0,90,0])
-			polycyl(d=M5, h=thickness+2);
+			polyhole(d=M5, h=thickness+2);
 		translate([-frameX/2-thickness, thickness+1, frameX/2])
 			rotate([90,0,0])
-			polycyl(d=M5, h=thickness+2);
+			polyhole(d=M5, h=thickness+2);
 
 	}// end difference
 
@@ -102,7 +102,7 @@ module yIdlerHolder(){
 		// tensioning bolt hole
 		translate([length-1, 0, thickness/2+M5/2])
 			rotate([0, 90, 0])
-			polycyl(d=M5, h=thickness+2);
+			polyhole(d=M5, h=thickness+2);
 
 		// tensioner arm M5 nut trap
 		translate([length-M5nutThickness/2, 0, thickness/2+M5/2])
@@ -113,11 +113,11 @@ module yIdlerHolder(){
 		// bearing bolt holes
 		translate([0, inner/2-1, thickness/2+M5/2])
 			rotate([-90, 0, 0])
-			polycyl(d=M8, h=2*thickness+2);
+			polyhole(d=M8, h=2*thickness+2);
 		mirror([0,1,0])
 			translate([0, inner/2-1, thickness/2+M5/2])
 			rotate([-90, 0, 0])
-			polycyl(d=M8, h=2*thickness+2);
+			polyhole(d=M8, h=2*thickness+2);
 
 		// cut the humps off the tensioner curved ends
 		translate([-25, -25, -50-thickness/2])
@@ -165,7 +165,7 @@ module yIdlerBlock(){
 		// tensioner hole
 		translate([-1, 0, thickness])
 			rotate([0, 90, 0])
-			polycyl(d=M5, h=frameX+thickness+2);
+			polyhole(d=M5, h=frameX+thickness+2);
 
 		// create tensioner cavity
 		translate([-1, -inner/2-thickness-.5, -1])
@@ -174,12 +174,12 @@ module yIdlerBlock(){
 		// holes to attach to the frame
 		translate([frameX/2-1, 0, frameX/2+2*thickness])
 			rotate([0, 90, 0])
-			polycyl(d=M5, h=thickness+2);
+			polyhole(d=M5, h=thickness+2);
 		translate([0, inner/2+thickness*1.5+M5/2+.5, -1])
-			polycyl(d=M5, h=2*thickness+2);
+			polyhole(d=M5, h=2*thickness+2);
 		mirror([0,1,0])
 			translate([0, inner/2+thickness*1.5+M5/2+.5, -1])
-			polycyl(d=M5, h=2*thickness+2);
+			polyhole(d=M5, h=2*thickness+2);
 
 	}// end difference
 

@@ -51,26 +51,27 @@ module yMotor(){
 		// frame mount holes
 		translate([-frameX/2, thickness+14, thickness+M5])
 			rotate([90,0,0])
-			polycyl(d=M5, h=thickness+2);
+			polyhole(d=M5, h=thickness+2);
 		translate([-frameX/2, thickness+14, 48+thickness-M5])
 			rotate([90,0,0])
-			polycyl(d=M5, h=thickness+2);
+			polyhole(d=M5, h=thickness+2);
 
 		// inset frame mount hole
 		translate([-1, thickness+13+frameY/2, 48/2+thickness])
 			rotate([0,90,0])
-			polycyl(d=M5, h=thickness+2);
+			polyhole(d=M5, h=thickness+2);
 		translate([thickness/2, thickness+13+frameY/2, 48/2+thickness])
 			rotate([0,90,0])
-			polycyl(d=M5nut*2, h=thickness);
+			polyhole(d=M5nut*2, h=thickness);
 
 		// nema holes
 		translate([thickness+6.5,thickness+5.5,-1])
-			polycyl(d=M3, h=thickness+2);
+			polyhole(d=M3, h=thickness+2);
 		translate([thickness+6.5+31,thickness+5.5,-1])
-			polycyl(d=M3, h=thickness+2);
+			polyhole(d=M3, h=thickness+2);
 		translate([thickness+6.5,thickness+5.5+31,-1])
-			polycyl(d=M3, h=thickness+2);
+			polyhole(d=M3, h=thickness+2);
+		// radius around nema axle
 		translate([thickness+6.5+31/2,thickness+5.5+31/2,-1])
 			polycyl(d=24, h=thickness+2);
 

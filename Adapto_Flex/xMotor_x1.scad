@@ -65,7 +65,7 @@ module xMotor(){
 		// make sure we keep the x rod opening clear
 		translate([xRodDistance/2, 65, 27+thickness+linearBearing[1]/2])
 			rotate([90, 0, 0])
-			polycyl(d=smoothRod, h=10);
+			polycyl(d=smoothRod+.1, h=10);
 
 	}// end difference
 

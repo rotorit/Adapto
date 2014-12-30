@@ -26,9 +26,9 @@ module nemaMount(){
 		// cut opening for nema17 axle
 		hull(){
 			translate([height/2-slotWidth/2, width/2, -1])
-				polycyl(d=mcenter+.1, h=thickness+2);
+				polyhole(d=mcenter+.1, h=thickness+2);
 			translate([height/2+slotWidth/2, width/2, -1])
-				polycyl(d=mcenter+.1, h=thickness+2);
+				polyhole(d=mcenter+.1, h=thickness+2);
 		}
 
 		// position slots for nema17
@@ -50,8 +50,8 @@ module nemaMount(){
 // slot for nema bolt mount
 module boltSlot(){
 	hull(){
-		polycyl(d=M3, h=thickness+2);
+		polyhole(d=M3, h=thickness+2);
 		translate([slotWidth, 0, 0])
-			polycyl(d=M3, h=thickness+2);
+			polyhole(d=M3, h=thickness+2);
 	}
 }

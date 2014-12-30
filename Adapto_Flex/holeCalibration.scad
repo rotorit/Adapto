@@ -56,25 +56,25 @@ module holes(){
 		// the holes and nut traps
 		// M8
 		translate([0, 0, -1])
-			polycyl(d=M8, h=thickness/2+2);
+			polyhole(d=M8, h=thickness/2+2);
 		translate([0, 0, thickness/2])
 			polynut(d=M8nut, h=thickness/2+2);
 
 		// M5
 		translate([M8/2+1.5*thickness+M5/2, M5/2, -1])
-			polycyl(d=M5, h=thickness/2+2);
+			polyhole(d=M5, h=thickness/2+2);
 		translate([M8/2+1.5*thickness+M5/2, M5/2, thickness/2])
 			polynut(d=M5nut, h=thickness/2+2);
 
 		// M3
 		translate([M8/2+1.5*thickness+M5/2+2*thickness+M3/2, M3, -1])
-			polycyl(d=M3, h=thickness/2+2);
+			polyhole(d=M3, h=thickness/2+2);
 		translate([M8/2+1.5*thickness+M5/2+2*thickness+M3/2, M3, thickness/2])
 			polynut(d=M3nut, h=thickness/2+2);
 
 		// zRod
 		translate([M8/2+1.5*thickness+M5/2+2*thickness+M3/2+2*thickness+(zRod+2)/2, 0, -1])
-			polycyl(d=zRod, h=thickness/2+2);
+			polyhole(d=zRod, h=thickness/2+2);
 		translate([M8/2+1.5*thickness+M5/2+2*thickness+M3/2+2*thickness+(zRod+2)/2, 0, thickness/2])
 			polynut(d=zRodnut, h=thickness/2+2);
 

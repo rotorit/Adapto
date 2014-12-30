@@ -72,30 +72,30 @@ module xBacker(){
 		// x smooth rod holes
 		translate([xRodDistance/2, 65, 27+thickness+linearBearing[1]/2])
 			rotate([90, 0, 0])
-			polycyl(d=smoothRod, h=300);
+			polyhole(d=smoothRod+.1, h=300);
 		mirror([1,0,0])
 				translate([xRodDistance/2, 65, 27+thickness+linearBearing[1]/2])
 					rotate([90, 0, 0])
-					polycyl(d=smoothRod, h=300);
+					polyhole(d=smoothRod+.1, h=300);
 
 		// channel for linear bearings
 		translate([-linearBearing[2]-1/2*thickness, 0, thickness+linearBearing[1]/2])
 			rotate([0, 90, 0])
-			polycyl(d=linearBearing[1], h=linearBearing[2]*2+thickness);
+			polyhole(d=linearBearing[1]+.5, h=linearBearing[2]*2+thickness);
 		translate([-50, 0, thickness+linearBearing[1]/2])
 			rotate([0, 90, 0])
-			polycyl(d=smoothRod, h=100);
+			polyhole(d=smoothRod+2, h=100);
 
 		// zip tie holes
-		translate([thickness, (thickness+linearBearing[1]/2)/2+1, -1])
+		translate([thickness, linearBearing[1]/2, -1])
 			cube([thickness, 2, linearBearing[1]/2+thickness+2]);
 		mirror([1,0,0])
-			translate([thickness, (thickness+linearBearing[1]/2)/2+1, -1])
+			translate([thickness, linearBearing[1]/2, -1])
 				cube([thickness, 2, linearBearing[1]/2+thickness+2]);
-		translate([linearBearing[2]-thickness, (thickness+linearBearing[1]/2)/2+1, -1])
+		translate([linearBearing[2]-thickness, linearBearing[1]/2, -1])
 			cube([thickness, 2, linearBearing[1]/2+thickness+2]);
 		mirror([1,0,0])
-			translate([linearBearing[2]-thickness, (thickness+linearBearing[1]/2)/2+1, -1])
+			translate([linearBearing[2]-thickness, linearBearing[1]/2, -1])
 				cube([thickness, 2, linearBearing[1]/2+thickness+2]);
 
 		// centre hole to save plastic
@@ -108,7 +108,7 @@ module xBacker(){
 
 		// curve to expose Z nut trap
 		translate([0, 33/2+47+thickness+linearBearing[1]/2, -1])
-			polycyl(d=49, h=30);
+			polyhole(d=49, h=30);
 
 		// trim the sides
 		translate([44, 0, -1])
@@ -120,23 +120,23 @@ module xBacker(){
 		// The Z nut trap and hole for Z threaded rod
 		translate([-45, 39+linearBearing[1]/2+zRod/2+.5, thickness+(zRod+1)/2])
 			rotate([0, 90, 0])
-			polycyl(d=zRod+1, h=90);
-		translate([-ceil(zRodnutThickness+2)/2, 39+linearBearing[1]/2+zRod/2, thickness+(zRod+1)/2])
+			polyhole(d=zRod+1, h=90);
+		translate([-ceil(zRodnutThickness+1)/2, 39+linearBearing[1]/2+zRod/2, thickness+(zRod+1)/2])
 			rotate([90, 0, 0])
 			rotate([0, 90, 0])
-			polynut(d=zRodnut+.4, h=ceil(zRodnutThickness+2));
+			polynut(d=zRodnut+.1, h=ceil(zRodnutThickness+1));
 
 		// nuts traps for M3 nuts and screws to hold the x smooth rods in place
 		translate([xRodDistance/2, linearBearing[1]/2+50, -1])
-			polycyl(d=M3*2, h=27);
+			polyhole(d=M3nut, h=27);
 		mirror([1,0,0])
 			translate([xRodDistance/2, linearBearing[1]/2+50, -1])
-				polycyl(d=M3*2, h=27);
+				polyhole(d=M3nut, h=27);
 		translate([xRodDistance/2, linearBearing[1]/2+50, -1])
-			polycyl(d=M3, h=27+thickness+linearBearing[1]/2);
+			polyhole(d=M3, h=27+thickness+linearBearing[1]/2);
 		mirror([1,0,0])
 			translate([xRodDistance/2, linearBearing[1]/2+50, -1])
-				polycyl(d=M3, h=27+thickness+linearBearing[1]/2);
+				polyhole(d=M3, h=27+thickness+linearBearing[1]/2);
 		translate([xRodDistance/2, linearBearing[1]/2+50, 27+thickness+linearBearing[1]/2-M8/2-4])
 			polynut(d=M3nut, h=8);
 		mirror([1,0,0])

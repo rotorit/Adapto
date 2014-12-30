@@ -31,7 +31,7 @@ module yBearing(){
 	
 		// linear bearing channel
 		translate([length/2, -linearBearing[1]/2+2, -1])
-			polycyl(d=linearBearing[1], h=linearBearing[2]+2);
+			polyhole(d=linearBearing[1]-.2, h=linearBearing[2]+2);
 	
 		// flatten mounting surface
 		translate([-1, thickness, -1])
@@ -40,10 +40,10 @@ module yBearing(){
 		// bolt holes
 		translate([4, -1, linearBearing[2]/2])
 			rotate([-90, 0, 0])
-			polycyl(d=M3, h=thickness+2);
+			polyhole(d=M3, h=thickness+2);
 		translate([length-4, -1, linearBearing[2]/2])
 			rotate([-90, 0, 0])
-			polycyl(d=M3, h=thickness+2);
+			polyhole(d=M3, h=thickness+2);
 	
 		// nut traps
 		translate([4, -1, linearBearing[2]/2])

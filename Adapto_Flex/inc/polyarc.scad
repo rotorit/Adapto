@@ -14,6 +14,11 @@ module polycyl(d, h){
 	cylinder(r=(d/2)/cos(180/$fn), h=h);
 }
 
+// proper poly compensation when drilling a hole
+module polyhole(d, h){
+	cylinder(r=(d/2)/cos(180/$fn)+0.05, h=h);
+}
+
 // proper poly compensation for a 6 sided nut(measured flat to flat)
 module polynut(d, h){
 	cylinder(r=(d/2)/cos(180/6)+0.05, h=h, $fn=6);

@@ -15,15 +15,17 @@ module zLower(){
 	difference() {
 	
 		union(){
-	
-			zUpper();//import zUpper
+
+			// import zUpper without the smooth rod lock screw
+			zUpper(lockhole=false);
+
 			// add bottom mounting tab
 			translate([40-max(frameX, 20)/2, -40, 0])
 				cube([max(frameX, 20), 20, thickness]);
 			translate([40, -40, 0])
 				polycyl(d=max(frameX*2, 40)/2, h=thickness);
 
-			// cover upper tab mount hole
+			// cover upper tab mount hole so we can create a new one a little lower
 			translate([40-max(frameX, 20)/2, 0, 35])
 				cube([max(frameX, 20), thickness, 10]);
 
@@ -37,12 +39,12 @@ module zLower(){
 
 		// add bottom mounting tab hole
 		translate([40, -40, -1])
-			polycyl(d=M5, h=thickness+2);
+			polyhole(d=M5, h=thickness+2);
 
 		// add upper mounting tab hole
 		translate([40, thickness+1, 32])
 			rotate([90,0,0])
-			polycyl(d=M5, h=thickness+2);
+			polyhole(d=M5, h=thickness+2);
 
 		// remove excess upper mounting tab material from zUpper
 		translate([29, thickness+1, 32])
