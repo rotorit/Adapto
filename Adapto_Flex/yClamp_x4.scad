@@ -7,13 +7,13 @@ use <./inc/polyarc.scad>
 
 // Printing on its side will make the skin continuous over the hump and much stronger
 rotate([0,90,0])
-	yRodClamp_GearheadRed();
+	yClamp_GearheadRed();
 
 // Original Design
 // Change recess to true to recess the allen heads
 //yRodClamp_Original(recess=false);
 
-module yRodClamp_GearheadRed(){
+module yClamp_GearheadRed(){
 	width=frameX;
 
 	difference(){

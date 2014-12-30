@@ -11,10 +11,11 @@ GearheadRed would love your feedback on these, both criticisms and improvement s
 
 Files with alternates:
 
+	footBase_x4.scad(currently t00tie's design is preferred, original is commented out)
 	cornerBrace_x8.scad(currently GearheadReds design is preferred, original is commented out)
-	yIdler_x1.scad(currently t00tie's design is preferred, original is commented out)
-	yClamp_x4.scad(currently GearheadReds design is preferred, original is commented out)
 	yBlock_x1.scad(currently GearheadReds design is preferred, original is commented out)
+	yClamp_x4.scad(currently GearheadReds design is preferred, original is commented out)
+	yIdler_x1.scad(currently t00tie's design is preferred, original is commented out)
 	zMotor_x2.scad(currently the original design is preferred, t00tie's design is commented out)
 
 Making the STLs
