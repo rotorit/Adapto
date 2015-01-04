@@ -14,6 +14,10 @@ module xCarriage(){
 
 		union(){
 
+			// poorly implemented support for the belt channel
+			// dont use unless your slicer is having a bad time working it out on its own
+			//support();
+
 			// base plate
 			translate([-100/2, -xRodDistance/2, thickness])
 				cube([100, xRodDistance, thickness]);
@@ -75,8 +79,6 @@ module xCarriage(){
 			%translate([-linearBearing[2]/2, -xRodDistance/2, -thickness])
 				rotate([0, 90, 0])
 				polycyl(d=linearBearing[1], h=linearBearing[2]);
-
-			//support();
 
 		}// end union
 
