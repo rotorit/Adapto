@@ -15,17 +15,17 @@ module xCarriage(){
 		union(){
 
 			// base plate
-			translate([-100/2, -xRodDistance/2, 0])
-				cube([100, xRodDistance, thickness*2]);
+			translate([-100/2, -xRodDistance/2, thickness])
+				cube([100, xRodDistance, thickness]);
 
 			// belt block
 			hull(){
-				translate([-50/2, xRodDistance/2, -linearBearing[1]/2])
-					cube([50, 30, thickness*2]);
-				translate([-100/2, xRodDistance/2, -linearBearing[1]/2])
-					cube([1, 1, thickness*2]);
-				translate([98/2, xRodDistance/2, -linearBearing[1]/2])
-					cube([1, 1, thickness*2]);
+				translate([-50/2, xRodDistance/2, -linearBearing[1]/2+thickness/2])
+					cube([50, 30, thickness]);
+				translate([-100/2, xRodDistance/2, -linearBearing[1]/2+thickness/2])
+					cube([1, 1, thickness]);
+				translate([98/2, xRodDistance/2, -linearBearing[1]/2+thickness/2])
+					cube([1, 1, thickness]);
 			}
 
 			// linear bearing traps
@@ -40,11 +40,21 @@ module xCarriage(){
 				polycyl(d=linearBearing[1]+thickness*2+1, h=linearBearing[2]);
 
 			// bearing trap reinforcements
+			translate([linearBearing[2]/2-thickness, -xRodDistance/2, 0])
+				cube([thickness*3, xRodDistance, linearBearing[0]]);
+			translate([-linearBearing[2]/2-thickness*2, -xRodDistance/2, 0])
+				cube([thickness*3, xRodDistance, linearBearing[0]]);
 
-			translate([linearBearing[2]/2-thickness, -xRodDistance/2, -linearBearing[0]/2])
-				cube([thickness*3, xRodDistance, linearBearing[0]]);
-			translate([-linearBearing[2]/2-thickness*2, -xRodDistance/2, -linearBearing[0]/2])
-				cube([thickness*3, xRodDistance, linearBearing[0]]);
+			// bolt head traps
+			translate([100/2-5, xRodDistance/2-20, 1])
+				polycyl(d=M5nut*2, h=M5nutThickness);
+			translate([-100/2+5, xRodDistance/2-20, 1])
+				polycyl(d=M5nut*2, h=M5nutThickness);
+	
+			translate([100/2-5, -xRodDistance/2+15, 1])
+				polycyl(d=M5nut*2, h=M5nutThickness);
+			translate([-100/2+5, -xRodDistance/2+15, 1])
+				polycyl(d=M5nut*2, h=M5nutThickness);
 
 			// the X smooth rods
 			%translate([-300/2, xRodDistance/2, -thickness])
@@ -66,22 +76,27 @@ module xCarriage(){
 				rotate([0, 90, 0])
 				polycyl(d=linearBearing[1], h=linearBearing[2]);
 
-			support(); // breaks manifold currently
+			//support();
 
 		}// end union
 
 		// belt channel
-		translate([-25/2, xRodDistance/2+20-thickness, -linearBearing[1]/2-1])
-			cube([25, 10, thickness*2+2]);
+		translate([-25/2, xRodDistance/2+20-thickness, -linearBearing[1]/2+thickness/2-.99])
+			cube([25, 10, thickness+1]);
 
 		// the linear bearing channels
 		translate([-300/2, xRodDistance/2, -thickness])
 			rotate([0, 90, 0])
-			polycyl(d=linearBearing[1], h=300);
+			polyhole(d=linearBearing[1]-.2, h=300);
 		translate([-300/2, -xRodDistance/2, -thickness])
 			rotate([0, 90, 0])
-			polycyl(d=linearBearing[1], h=300);
+			polyhole(d=linearBearing[1]-.2, h=300);
 
+		// the linear bearing split
+		translate([-300/2, xRodDistance/2-smoothRod/2, -linearBearing[1]-thickness/2])
+			cube([300, smoothRod, thickness*2]);
+		translate([-300/2, -xRodDistance/2-smoothRod/2, -linearBearing[1]-thickness/2])
+			cube([300, smoothRod, thickness*2]);
 
 		// bolt holes
 		translate([100/2-5, xRodDistance/2-20, -1])
@@ -101,7 +116,6 @@ module xCarriage(){
 		translate([-100/2+5, xRodDistance/2-20, -1])
 			rotate([0, 0, 90])
 			polynut(d=M5nut, h=M5nutThickness+1);
-
 		translate([100/2-5, -xRodDistance/2+15, -1])
 			rotate([0, 0, 90])
 			polynut(d=M5nut, h=M5nutThickness+1);
@@ -109,8 +123,10 @@ module xCarriage(){
 			rotate([0, 0, 90])
 			polynut(d=M5nut, h=M5nutThickness+1);
 
-		// workaround to fix a pierced facet at compile time
+		// flatten the sides
 		translate([-70, -xRodDistance, -xRodDistance/2])
+			cube([20, xRodDistance*2, xRodDistance]);
+		translate([50, -xRodDistance, -xRodDistance/2])
 			cube([20, xRodDistance*2, xRodDistance]);
 
 	}// end difference
@@ -126,28 +142,29 @@ module support(){
 	
 			// belt block support
 				hull(){
-					translate([-50/2, xRodDistance/2+linearBearing[1]-4, 0])
-						cube([50, 17, thickness*2]);
+					translate([-50/2, xRodDistance/2+linearBearing[1]-4, -linearBearing[1]/2+thickness*1.5])
+						cube([50, 17, thickness+linearBearing[1]/2-thickness/2]);
 	
-					translate([-80/2, xRodDistance/2+linearBearing[1]-4, 0])
-						cube([1, 5, thickness*2]);
-					translate([79/2, xRodDistance/2+linearBearing[1]-4, 0])
-						cube([1, 5, thickness*2]);
+					translate([-80/2, xRodDistance/2+linearBearing[1]-4, -linearBearing[1]/2+thickness*1.5])
+						cube([1, 5, thickness+linearBearing[1]/2-thickness/2]);
+					translate([79/2, xRodDistance/2+linearBearing[1]-4, -linearBearing[1]/2+thickness*1.5])
+						cube([1, 5, thickness+linearBearing[1]/2-thickness/2]);
 				}
-				translate([-40/2, xRodDistance/2+linearBearing[0]-4, 0])
-					cube([40, 10, thickness*2]);
+				translate([-40/2, xRodDistance/2+linearBearing[0]-4, -linearBearing[1]/2+thickness*1.5])
+					cube([40, 10, thickness+linearBearing[1]/2-thickness/2]);
 	
 			}// end union
 	
 		// cut the grooves
 		for(i = [-45 : 45])
-			translate([i, xRodDistance/2, -1])
-				cube([.5, 40, thickness*2+2]);
+			translate([i, xRodDistance/2, -thickness])
+				cube([.8, 40, thickness*4]);
 	
-		}//end difference
+		}// end difference
 
-	#translate([-80/2, xRodDistance/2+linearBearing[1], thickness])
-		cube([80, .5, thickness]);
+		// add cross brace to support to help keep the support from falling over
+		translate([-80/2, xRodDistance/2+linearBearing[1], thickness*2-thickness/2])
+			cube([80, .5, thickness/2]);
 
 	}// end union
 
