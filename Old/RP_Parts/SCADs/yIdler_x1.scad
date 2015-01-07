@@ -11,11 +11,11 @@ translate([-33, 0, thickness/2])
 	yIdlerHolder(); //bottom side has thicker edges around bolt holes and nut trap
 
 // Original Design (2 lines)
-//mirror([ 0, 1, 0 ]) yIdler();
-//translate([0, frameX, 0]) yIdler();
+//mirror([ 0, 1, 0 ]) yIdler_Original();
+//translate([0, frameX, 0]) yIdler_Original();
 
 // original module
-module yIdler(){
+module yIdler_Original(){
 
 	difference(){
 

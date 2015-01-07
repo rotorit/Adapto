@@ -1,11 +1,14 @@
+// Copyright (C) 2012 t00tie
+// After an stl designed by RoTorIT
 // Adapto is licensed under the Creative Commons - GNU GPL license.
 // http://creativecommons.org/licenses/GPL/2.0/
 include <./inc/configuration.scad>
 use <./inc/polyarc.scad>
 
-yBlock_Flex();
+yBlock(); // Clamp style block design
+//yBlock_Original(); // original belt block design
 
-module yBlock_Flex(){
+module yBlock(){
 	length=M3nut*2+25+M3nut*2;
 
 	difference(){
@@ -49,6 +52,39 @@ module yBlock_Flex(){
 			polycyl(d=M3, h=thickness+2);
 		translate([linearBearing[1]/2, linearBearing[2]+10+linearBearing[2]-M3, -1])
 			polycyl(d=M3, h=thickness+2);
+
+	}// end difference
+
+}
+
+module yBlock_Original(){
+	r=14/2; // radius of each leg
+	h=30; // belt block height
+	w=26; // biggest width of belt block
+	gap=4; //width of gap between the legs
+
+	difference(){
+
+		union(){
+
+			cylinder(r=r, h=h);
+			translate([w-2*r, 0, 0])
+				cylinder(r=r, h=h);
+			translate([0, -r, 0])
+				cube([w-2*r, 2*r, h]);
+
+		}// end union
+
+		translate([(w-2*r)/2-gap/2, -2*r, -1])
+			cube([gap, 4*r, h+1-gap]);// gap between the legs
+		translate([0, 0, -1])
+			polyhole(d=M3, h=h+2);
+		translate([w-2*r, 0, -1])
+			polyhole(d=M3, h=h+2);
+		translate([0, 0, h-2])
+			polynut(d=M3nut, h=4);
+		translate([w-2*r, 0, h-2])
+			polynut(d=M3nut, h=4);
 
 	}// end difference
 

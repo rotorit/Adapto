@@ -1,71 +1,90 @@
-// Copyright (C) 2012 t00tie
-// After an stl designed by RoTorIT
 // Adapto is licensed under the Creative Commons - GNU GPL license.
 // http://creativecommons.org/licenses/GPL/2.0/
 include <./inc/configuration.scad>
 use <./inc/polyarc.scad>
 use <./inc/xBacker.scad>
-use <./inc/nemaMount.scad>
 
-xMotor();
+xMotor_Flex();
 
-module xMotor(){
+module xMotor_Flex(){
+xRodDistance=70;
 
 	difference(){
 
 		union(){
 
-			xBacker();
+			xBacker_Flex();
 
-			// create nema mount
-			translate([44, 66, thickness+2])
-				rotate([0, -90, 0])
-				nemaMount();
-
-			// y spacer between xBacker and nemaMount
-			translate([44-thickness, 63, thickness+2])
-				cube([thickness, 4, 56-thickness/2]);
-
-			// x spacer between nemaMount and support arm
-			translate([44-thickness, 63, thickness-1])
-				cube([thickness, 48, thickness]);
-
-			// block for adjustable z height endstop screw
-			translate([-44+thickness, 40-ceil(M3nut+M3nut/2), linearBearing[1]/2+thickness])
-				cube([thickness, ceil(M3nut+M3nut/2), ceil(M3nut+M3nut/2)]);
-
-			// support arm from xBacker to nemaMount
+			// nema mounting
 			hull(){
-				translate([21, 63, 0])
-					cube([23, 1, thickness+1]);
-				translate([44-thickness, 110, 0])
-					cube([thickness, 1, thickness+1]);
+				translate([-(1.41*31+thickness*2+M3)/2, 30-thickness,  thickness*2+linearBearing[1]])
+					cube([1.41*31+thickness*2+M3, 1, 1]);
+				translate([-(1.41*31+thickness*2+M3)/2, 30,  thickness*2+linearBearing[1]])
+					cube([1.41*31+thickness*2+M3, 1, thickness]);
+
+				translate([0, 30+zRodnut/2+thickness+M3, thickness*2+linearBearing[1]])
+					polycyl(d=M3+thickness*2, h=thickness);
+
+				translate([1.41*31/2, 30+zRodnut/2+thickness+M3+1.41*31/2, thickness*2+linearBearing[1]])
+					polycyl(d=M3+thickness*2, h=thickness);
+				translate([-1.41*31/2, 30+zRodnut/2+thickness+M3+1.41*31/2, thickness*2+linearBearing[1]])
+					polycyl(d=M3+thickness*2, h=thickness);
 			}
 
-			// additional support from xBacker to nemaMount
+			// nema mount braces
 			hull(){
-				translate([44-thickness-linearBearing[1]/2, 44, 27+thickness+linearBearing[1]])
-					cube([thickness+linearBearing[1]/2, 20, 2]);
-				translate([44-thickness, 64, 56])
-					cube([thickness, 3, thickness+2]);
+				translate([1.41*31/2+M3/2, 30+zRodnut/2+thickness+M3+1.41*31/2-thickness, thickness*2+linearBearing[1]])
+					cube([thickness, thickness, thickness]);
+				translate([1.41*31/2+M3/2, 30+24/2-thickness, 0])
+					cube([thickness, thickness, thickness*2+linearBearing[1]+thickness*2+2+smoothRod]);
 			}
+			mirror([1, 0, 0])
+				hull(){
+					translate([1.41*31/2+M3/2, 30+zRodnut/2+thickness+M3+1.41*31/2-thickness, thickness*2+linearBearing[1]])
+						cube([thickness, thickness, thickness]);
+					translate([1.41*31/2+M3/2, 30+24/2-thickness, 0])
+						cube([thickness, thickness, thickness*2+linearBearing[1]+thickness*2+2+smoothRod]);
+				}
 
 		}// end union
 
-		// nut trap for z height screw
-		translate([-44+thickness+M3nutThickness, 40-ceil(M3nut-M3/2), linearBearing[1]/2+thickness+M3nut-M3/2])
-			rotate([0,90,0])
-			polynut(d=M3nut, h=ceil(M3nutThickness));
+		translate([0, 30+zRodnut/2+thickness+M3, thickness*2+linearBearing[1]-1])
+			polyhole(d=M3, h=thickness+2);
+		translate([1.41*31/2, 30+zRodnut/2+thickness+M3+1.41*31/2, thickness*2+linearBearing[1]-1])
+			polyhole(d=M3, h=thickness+2);
+		translate([-1.41*31/2, 30+zRodnut/2+thickness+M3+1.41*31/2, thickness*2+linearBearing[1]-1])
+			polyhole(d=M3, h=thickness+2);
 
-		// hole for z height screw
-		translate([-44+thickness-1, 40-ceil(M3nut-M3/2), linearBearing[1]/2+thickness+M3nut-M3/2])
-			rotate([0,90,0])
-			polycyl(d=M3, h=ceil(thickness+2));
+		// nema center axle cutout
+		hull(){
+			translate([0, 30+zRodnut/2+thickness+M3+1.41*31/2, thickness*2+linearBearing[1]-1])
+				polyhole(d=22, h=thickness+2);
+			translate([0, 30+zRodnut/2+thickness+M3+1.41*31/2, thickness*2+linearBearing[1]-1])
+				rotate([0, 0, 45])
+				cube([31*2, 31*2, thickness+2]);
+		}
 
-		// make sure we keep the x rod opening clear
-		translate([xRodDistance/2, 65, 27+thickness+linearBearing[1]/2])
-			rotate([90, 0, 0])
-			polycyl(d=smoothRod+.1, h=10);
+		// nema motor shaft and pulley
+		%translate([0, 30+zRodnut/2+thickness+M3+1.41*31/2, thickness*2+linearBearing[1]])
+			polyhole(d=5, h=thickness+18);
+		%translate([0, 30+zRodnut/2+thickness+M3+1.41*31/2, thickness*2+linearBearing[1]+thickness*2+7])
+			polyhole(d=15, h=1);
+		%translate([0, 30+zRodnut/2+thickness+M3+1.41*31/2, thickness*2+linearBearing[1]+thickness*2])
+			polyhole(d=pullyDiameter, h=7);
+		%translate([0, 30+zRodnut/2+thickness+M3+1.41*31/2, thickness*2+linearBearing[1]+thickness*2-5])
+			polyhole(d=15, h=5);
+		%translate([0, 30+zRodnut/2, -45+thickness*2+linearBearing[1]])
+			rotate([0, 0, 45])
+			cube([45, 45, 45]);
+
+		// clean up the nema braces
+		translate([1.41*31/2, 30+zRodnut/2+thickness+M3+1.41*31/2, thickness*3+linearBearing[1]])
+			polycyl(d=M3+thickness*2, h=thickness);
+		translate([-1.41*31/2, 30+zRodnut/2+thickness+M3+1.41*31/2, thickness*3+linearBearing[1]])
+			polycyl(d=M3+thickness*2, h=thickness);
+		translate([0, 30+zRodnut/2, linearBearing[1]])
+			rotate([0, 0, 45])
+			cube([45, 45, thickness*2]);
 
 	}// end difference
 

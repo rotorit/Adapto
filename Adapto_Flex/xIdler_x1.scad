@@ -1,48 +1,42 @@
-// Copyright (C) 2012 t00tie
-// After an stl designed by RoTorIT
 // Adapto is licensed under the Creative Commons - GNU GPL license.
 // http://creativecommons.org/licenses/GPL/2.0/
 include <./inc/configuration.scad>
 use <./inc/polyarc.scad>
 use <./inc/xBacker.scad>
 
-xIdler();
+xIdler_Flex();
 
-module xIdler(){
+module xIdler_Flex(){
 
 	difference(){
 
 		union(){
 
-			xBacker();// import the base x backing model
+			xBacker_Flex();// import the base x backing model
 
-			// idler mount tab
 			hull(){
-				translate([-44, 40, 24+thickness+linearBearing[1]/2+thickness+M8/2])
-					rotate([0, 90, 0])
-					cube([1, (thickness+.8+M8/2)*2+4, 22]);
-				translate([-44, 52, 27+thickness+linearBearing[1]/2+thickness+M8/2+16])
-					rotate([0, 90, 0])
-					polycyl(d=M8+thickness*2, h=22);
+				translate([-(1.41*31+thickness*2+M3)/2, 30-24/2,  thickness*2+linearBearing[1]])
+					cube([1.41*31+thickness*2+M3, 1, 1]);
+				translate([-(1.41*31+thickness*2+M3)/2, 30-rotaryBearing[0],  thickness*2+linearBearing[1]])
+					cube([1.41*31+thickness*2+M3, rotaryBearing[0], thickness+rotaryBearing[2]+thickness*2]);
 			}
 
 		}// end union
-		
-		// idler slot hole
+
+		%translate([rotaryBearing[1]/2-pullyDiameter/2, 30, thickness*2+linearBearing[1]+thickness*2])
+			polycyl(d=rotaryBearing[1], h=rotaryBearing[2]);
 		hull(){
-			translate([-45, 52, 27+thickness+linearBearing[1]/2+thickness+M8])
-				rotate([0, 90, 0])
-				polycyl(d=M8, h=34);
-			translate([-45, 52, 27+thickness+linearBearing[1]/2+thickness+M8/2+16])
-				rotate([0, 90, 0])
-				polycyl(d=M8, h=34);
+			translate([rotaryBearing[1]/2-pullyDiameter/2, 0, thickness*2+linearBearing[1]+thickness*2-.25])
+				polycyl(d=rotaryBearing[1]+6, h=rotaryBearing[2]+.5);
+			translate([rotaryBearing[1]/2-pullyDiameter/2, 30, thickness*2+linearBearing[1]+thickness*2-.25])
+				polycyl(d=rotaryBearing[1]+6, h=rotaryBearing[2]+.5);
 		}
 
-		// carve washer space at base of idler slot
-		translate([-22, 52, 27+thickness+linearBearing[1]/2+thickness+M8])
-			rotate([0, 90, 0])
-			polycyl(d=18, h=11);
-	
+		%translate([rotaryBearing[1]/2-pullyDiameter/2, 30, thickness*2+linearBearing[1]+thickness])
+			polycyl(d=rotaryBearing[0], h=rotaryBearing[2]+thickness*2);
+		translate([rotaryBearing[1]/2-pullyDiameter/2, 30, thickness*2+linearBearing[1]+thickness])
+			polycyl(d=rotaryBearing[0], h=rotaryBearing[2]+thickness*2);
+		
 	}// end difference
 
 }

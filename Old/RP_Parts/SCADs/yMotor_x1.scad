@@ -1,11 +1,12 @@
+// After an stl designed by RoTorIT
 // Adapto is licensed under the Creative Commons - GNU GPL license.
 // http://creativecommons.org/licenses/GPL/2.0/
 include <./inc/configuration.scad>
 use <./inc/polyarc.scad>
 
-yMotor_Flex();
+yMotor();
 
-module yMotor_Flex(){
+module yMotor(){
 
 	difference(){
 

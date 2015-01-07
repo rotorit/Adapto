@@ -2,9 +2,9 @@ These STLs were generated via openSCAD with the below settings in the ./inc/conf
 
 !!!This is not likely default configuration for most users due to the ACME rod specs for the z axis but applies to GearheadRed's printer configuration specifically.
 
-//====================//
-// Basic Config Items //
-//====================//
+//==============//
+// Basic Config //
+//==============//
 smoothRod=10;			// diameter of smooth rods in mm
 linearBearing=lm10uu;		// change this to the linear bearing you are using from the definitions section
 zRod=ACME14;			// change this to the z threaded rod you are using from the definitions section
@@ -15,5 +15,5 @@ zRodnutThickness=ACME14nutThickness;	// change this to the z nut thickness you a
 // Advanced Config Items //
 //=======================//
 $fn=200;			// default resolution for parts, decrease if part compiling or stl/gcode is unmanageable
+xRodDistance=70;		// i3 xaxis_rod_distance=45, try this for compatible extruders, ymmv(not fully parametric yet)
 thickness=5;			// thickness of walls etc. in parts
-smoothRodOffset=thickness*2+2+smoothRod/2;	// how far the centre of the z smooth rods are from the frame
