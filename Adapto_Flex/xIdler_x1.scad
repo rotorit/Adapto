@@ -14,12 +14,8 @@ module xIdler_Flex(){
 
 			xBacker_Flex();// import the base x backing model
 
-			hull(){
-				translate([-(1.41*31+thickness*2+M3)/2, 30-24/2,  thickness*2+linearBearing[1]])
-					cube([1.41*31+thickness*2+M3, 1, 1]);
 				translate([-(1.41*31+thickness*2+M3)/2, 30-rotaryBearing[0],  thickness*2+linearBearing[1]])
-					cube([1.41*31+thickness*2+M3, rotaryBearing[0], thickness+rotaryBearing[2]+thickness*2]);
-			}
+					cube([1.41*31+thickness*2+M3, rotaryBearing[0], thickness+rotaryBearing[2]+thickness*2.5]);
 
 		}// end union
 

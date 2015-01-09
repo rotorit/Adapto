@@ -13,14 +13,14 @@ xRodDistance=70;
 
 		union(){
 
-			xBacker_Flex();
+			xBacker_Flex();// import the base x backing model
 
 			// nema mounting
 			hull(){
-				translate([-(1.41*31+thickness*2+M3)/2, 30-thickness,  thickness*2+linearBearing[1]])
-					cube([1.41*31+thickness*2+M3, 1, 1]);
-				translate([-(1.41*31+thickness*2+M3)/2, 30,  thickness*2+linearBearing[1]])
-					cube([1.41*31+thickness*2+M3, 1, thickness]);
+				translate([-88/2, 30-thickness,  thickness*2+linearBearing[1]])
+					cube([88, 1, 1]);
+				translate([-88/2, 30+24/2-1,  thickness*2+linearBearing[1]])
+					cube([88, 1, thickness]);
 
 				translate([0, 30+zRodnut/2+thickness+M3, thickness*2+linearBearing[1]])
 					polycyl(d=M3+thickness*2, h=thickness);
@@ -30,21 +30,6 @@ xRodDistance=70;
 				translate([-1.41*31/2, 30+zRodnut/2+thickness+M3+1.41*31/2, thickness*2+linearBearing[1]])
 					polycyl(d=M3+thickness*2, h=thickness);
 			}
-
-			// nema mount braces
-			hull(){
-				translate([1.41*31/2+M3/2, 30+zRodnut/2+thickness+M3+1.41*31/2-thickness, thickness*2+linearBearing[1]])
-					cube([thickness, thickness, thickness]);
-				translate([1.41*31/2+M3/2, 30+24/2-thickness, 0])
-					cube([thickness, thickness, thickness*2+linearBearing[1]+thickness*2+2+smoothRod]);
-			}
-			mirror([1, 0, 0])
-				hull(){
-					translate([1.41*31/2+M3/2, 30+zRodnut/2+thickness+M3+1.41*31/2-thickness, thickness*2+linearBearing[1]])
-						cube([thickness, thickness, thickness]);
-					translate([1.41*31/2+M3/2, 30+24/2-thickness, 0])
-						cube([thickness, thickness, thickness*2+linearBearing[1]+thickness*2+2+smoothRod]);
-				}
 
 		}// end union
 

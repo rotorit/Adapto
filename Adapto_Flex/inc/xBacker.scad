@@ -13,38 +13,31 @@ xRodDistance=70;
 		union(){
 
 			// channel for the Z linear bearings
-			translate([-linearBearing[2]-thickness/2, 0, linearBearing[1]/2+thickness])
+			translate([-88/2, 0, linearBearing[1]/2+thickness])
 				rotate([0,90,0])
-				polycyl(d=linearBearing[1]+thickness*2, h=linearBearing[2]*2+thickness);
+				polycyl(d=linearBearing[1]+thickness*2, h=88);
 
 			// connection between z block and smooth rods
-			hull(){
-				translate([-linearBearing[2]-thickness/2, 0, 0])
-					cube([linearBearing[2]*2+thickness, 1, linearBearing[1]+thickness*2]);
-				translate([-44, 30-24/2, 0])
-					cube([88, 24, linearBearing[1]+thickness*2]);				
-			}
+				translate([-88/2, 0, 0])
+					cube([88, 30+24/2, linearBearing[1]+thickness*2]);				
 
 			// smooth rod holders
 			translate([xRodDistance/2, 30-24/2, thickness*2+linearBearing[1]+thickness*2+2+smoothRod/2])
 				rotate([-90, 0, 0])
 				polycyl(d=linearBearing[1]+thickness*2, h=24);
-			translate([xRodDistance/2-2*(thickness+linearBearing[1]/2)/2, 30-24/2, 0])
-				cube([linearBearing[1]+thickness*2, 24, thickness*2+linearBearing[1]+thickness*2+2+smoothRod/2]);
 			mirror([1,0,0])
 				translate([xRodDistance/2, 30-24/2, thickness*2+linearBearing[1]+thickness*2+2+smoothRod/2])
 					rotate([-90, 0, 0])
 					polycyl(d=linearBearing[1]+thickness*2, h=24);
-			mirror([1,0,0])
-				translate([xRodDistance/2-2*(thickness+linearBearing[1]/2)/2, 30-24/2, 0])
-					cube([linearBearing[1]+thickness*2, 24, thickness*2+linearBearing[1]+thickness*2+2+smoothRod/2]);
-
+			translate([-88/2, 30-24/2, 0])
+				cube([88, 24, thickness*2+linearBearing[1]+thickness*2+2+smoothRod/2+1]);
+			
 			// the linear bearings
-			%translate([1/2*thickness, 0, thickness+linearBearing[1]/2])
+			%translate([88/2-linearBearing[2], 0, thickness+linearBearing[1]/2])
 				rotate([0, 90, 0])
 				polycyl(d=linearBearing[1], h=linearBearing[2]);
 			mirror([1,0,0])
-				%translate([1/2*thickness, 0, thickness+linearBearing[1]/2])
+				%translate([88/2-linearBearing[2], 0, thickness+linearBearing[1]/2])
 					rotate([0, 90, 0])
 					polycyl(d=linearBearing[1], h=linearBearing[2]);
 
@@ -78,48 +71,44 @@ xRodDistance=70;
 			rotate([0, 90, 0])
 			polyhole(d=linearBearing[1], h=300);
 
-		// cutout to prevent carriage from hitting smooth rod keepers
-		translate([1/2*thickness+linearBearing[2], 0, thickness+linearBearing[1]/2])
-			rotate([0, 90, 0])
-			polyhole(d=smoothRod+thickness*2+2, h=20);
-		mirror([1,0,0])
-			translate([1/2*thickness+linearBearing[2], 0, thickness+linearBearing[1]/2])
-				rotate([0, 90, 0])
-				polyhole(d=smoothRod+thickness*2+2, h=20);
-
 		// z bearing channel split
-		translate([-linearBearing[2]-thickness/2-1,-1, thickness+linearBearing[1]-1])
-			cube([linearBearing[2]*2+thickness+2 , 2, thickness+2]);
+		translate([-90/2, -thickness-linearBearing[1]/2-1, thickness+linearBearing[1]/2-1])
+			cube([90 , thickness+2, 2]);
 
 		// zip tie holes
 		difference(){
-			translate([thickness/2+linearBearing[2]/2, 0, thickness+linearBearing[1]/2])
+			translate([88/2-linearBearing[2]/2, 0, thickness+linearBearing[1]/2])
 				rotate([0,90,0])
-				polycyl(d=linearBearing[1]+thickness*2+2, h=thickness);
-			translate([thickness/2+linearBearing[2]/2, 0, thickness+linearBearing[1]/2])
+				polycyl(d=linearBearing[1]+thickness*2+5, h=thickness);
+			translate([88/2-linearBearing[2]/2, 0, thickness+linearBearing[1]/2])
 				rotate([0,90,0])
-				polycyl(d=linearBearing[1]+thickness*2-2, h=thickness);
+				polycyl(d=linearBearing[1]+thickness*2, h=thickness);
 		}
 		mirror([1,0,0])
 			difference(){
-				translate([thickness/2+linearBearing[2]/2, 0, thickness+linearBearing[1]/2])
+				translate([88/2-linearBearing[2]/2, 0, thickness+linearBearing[1]/2])
 					rotate([0,90,0])
-					polycyl(d=linearBearing[1]+thickness*2+2, h=thickness);
-				translate([thickness/2+linearBearing[2]/2, 0, thickness+linearBearing[1]/2])
+					polycyl(d=linearBearing[1]+thickness*2+5, h=thickness);
+				translate([88/2-linearBearing[2]/2, 0, thickness+linearBearing[1]/2])
 					rotate([0,90,0])
-					polycyl(d=linearBearing[1]+thickness*2-2, h=thickness);
+					polycyl(d=linearBearing[1]+thickness*2, h=thickness);
 			}
 
 
 		// curve to expose Z nut trap
 		translate([0, 30+50/2, -1])
-			polyhole(d=48, h=linearBearing[1]+thickness*2+2);
+			polyhole(d=48, h=thickness*2+linearBearing[1]+thickness*2+2+smoothRod);
+
+		// curve to expose Z nut trap
+		translate([0, 30-24/2-thickness, thickness*2+linearBearing[1]+thickness*2+2+smoothRod-1.25])
+			rotate([-90, 0, 0])
+			polyhole(d=41.25, h=linearBearing[2]+thickness*2);
 
 		// trim the sides
-		translate([44, 0, -1])
+		translate([44, -40, -1])
 			cube([100,100,100]);
 		mirror([1,0,0])
-			translate([44, 0, -1])
+			translate([44, -40, -1])
 				cube([100,100,100]);
 
 		// The Z nut trap and hole for Z threaded rod
