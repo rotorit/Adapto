@@ -13,9 +13,12 @@ module xIdler_Flex(){
 		union(){
 
 			xBacker_Flex();// import the base x backing model
-
+			hull(){
+				translate([-(1.41*31+thickness*2+M3)/2, 30-18/2-6,  thickness*2+linearBearing[1]])
+					cube([1.41*31+thickness*2+M3, 1, 1]);
 				translate([-(1.41*31+thickness*2+M3)/2, 30-rotaryBearing[0],  thickness*2+linearBearing[1]])
 					cube([1.41*31+thickness*2+M3, rotaryBearing[0], thickness+rotaryBearing[2]+thickness*2.5]);
+			}
 
 		}// end union
 
@@ -23,9 +26,9 @@ module xIdler_Flex(){
 			polycyl(d=rotaryBearing[1], h=rotaryBearing[2]);
 		hull(){
 			translate([rotaryBearing[1]/2-pullyDiameter/2, 0, thickness*2+linearBearing[1]+thickness*2-.25])
-				polycyl(d=rotaryBearing[1]+6, h=rotaryBearing[2]+.5);
+				polycyl(d=rotaryBearing[1]+5, h=rotaryBearing[2]+.5);
 			translate([rotaryBearing[1]/2-pullyDiameter/2, 30, thickness*2+linearBearing[1]+thickness*2-.25])
-				polycyl(d=rotaryBearing[1]+6, h=rotaryBearing[2]+.5);
+				polycyl(d=rotaryBearing[1]+5, h=rotaryBearing[2]+.5);
 		}
 
 		%translate([rotaryBearing[1]/2-pullyDiameter/2, 30, thickness*2+linearBearing[1]+thickness])

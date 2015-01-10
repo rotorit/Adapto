@@ -1,4 +1,4 @@
-These STLs were generated via openSCAD with the below settings in the ./inc/configuration.scad file, and then run through InStep V2.3 to make sure they are tidy and have a small footprint. STL's generated directly from openSCAD will have a larger data footprint.
+These STLs were generated via openSCAD with the below settings in the ./inc/configuration.scad file.
 
 !!!This is not likely default configuration for most users due to the ACME rod specs for the z axis but applies to GearheadRed's printer configuration specifically.
 

@@ -19,17 +19,17 @@ xRodDistance=70;
 
 			// connection between z block and smooth rods
 				translate([-88/2, 0, 0])
-					cube([88, 30+24/2, linearBearing[1]+thickness*2]);				
+					cube([88, 30+18/2, linearBearing[1]+thickness*2]);				
 
 			// smooth rod holders
-			translate([xRodDistance/2, 30-24/2, thickness*2+linearBearing[1]+thickness*2+2+smoothRod/2])
-				rotate([-90, 0, 0])
+			translate([xRodDistance/2, 30+18/2, thickness*2+linearBearing[1]+thickness*2+2+smoothRod/2])
+				rotate([90, 0, 0])
 				polycyl(d=linearBearing[1]+thickness*2, h=24);
 			mirror([1,0,0])
-				translate([xRodDistance/2, 30-24/2, thickness*2+linearBearing[1]+thickness*2+2+smoothRod/2])
-					rotate([-90, 0, 0])
+				translate([xRodDistance/2, 30+18/2, thickness*2+linearBearing[1]+thickness*2+2+smoothRod/2])
+					rotate([90, 0, 0])
 					polycyl(d=linearBearing[1]+thickness*2, h=24);
-			translate([-88/2, 30-24/2, 0])
+			translate([-88/2, 30-18/2-6, 0])
 				cube([88, 24, thickness*2+linearBearing[1]+thickness*2+2+smoothRod/2+1]);
 			
 			// the linear bearings
@@ -93,6 +93,14 @@ xRodDistance=70;
 					rotate([0,90,0])
 					polycyl(d=linearBearing[1]+thickness*2, h=thickness);
 			}
+		difference(){
+			translate([-thickness/2, 0, thickness+linearBearing[1]/2])
+				rotate([0,90,0])
+				polycyl(d=linearBearing[1]+thickness*2+5, h=thickness);
+			translate([-thickness/2, 0, thickness+linearBearing[1]/2])
+				rotate([0,90,0])
+				polycyl(d=linearBearing[1]+thickness*2, h=thickness);
+		}
 
 
 		// curve to expose Z nut trap
@@ -112,29 +120,32 @@ xRodDistance=70;
 				cube([100,100,100]);
 
 		// The Z nut trap and hole for Z threaded rod
-		translate([-45, 30, linearBearing[1]/2+thickness])
+		translate([ceil(zRodnutThickness+1)/2+.3, 30, linearBearing[1]/2+thickness])
 			rotate([0, 90, 0])
-			polyhole(d=zRod+1, h=90);
+			polyhole(d=zRod+1, h=50);
+		translate([-ceil(zRodnutThickness+1)/2-.3, 30, linearBearing[1]/2+thickness])
+			rotate([0, -90, 0])
+			polyhole(d=zRod+1, h=50);
 		translate([-ceil(zRodnutThickness+1)/2, 30, linearBearing[1]/2+thickness])
 			rotate([90, 0, 0])
 			rotate([0, 90, 0])
 			polynut(d=zRodnut+.1, h=ceil(zRodnutThickness+1));
 
 		// nuts traps for M3 nuts and screws to hold the x smooth rods in place
-		translate([xRodDistance/2, 38, -1])
-			polyhole(d=M3nut, h=thickness*2+linearBearing[1]+thickness);
+		translate([xRodDistance/2, 30-18/2, -1])
+			polyhole(d=M3nut, h=thickness*2+linearBearing[1]+thickness+1);
 		mirror([1,0,0])
-			translate([xRodDistance/2, 38, -1])
-				polyhole(d=M3nut, h=thickness*2+linearBearing[1]+thickness);
-		translate([xRodDistance/2, 38, thickness*2+linearBearing[1]+thickness])
+			translate([xRodDistance/2, 30-18/2, -1])
+				polyhole(d=M3nut, h=thickness*2+linearBearing[1]+thickness+1);
+		translate([xRodDistance/2, 30-18/2, thickness*2+linearBearing[1]+thickness-1])
 			polyhole(d=M3, h=thickness+2+smoothRod/2);
 		mirror([1,0,0])
-			translate([xRodDistance/2, 38, thickness*2+linearBearing[1]+thickness])
+			translate([xRodDistance/2, 30-18/2, thickness*2+linearBearing[1]+thickness-1])
 				polyhole(d=M3, h=thickness+2+smoothRod/2);
-		translate([xRodDistance/2, 38, thickness*2+linearBearing[1]+thickness*2-M3nutThickness])
+		translate([xRodDistance/2, 30-18/2, thickness*2+linearBearing[1]+thickness*2-M3nutThickness])
 			polynut(d=M3nut, h=M3nutThickness*2+2);
 		mirror([1,0,0])
-			translate([xRodDistance/2, 38, thickness*2+linearBearing[1]+thickness*2-M3nutThickness])
+			translate([xRodDistance/2, 30-18/2, thickness*2+linearBearing[1]+thickness*2-M3nutThickness])
 				polynut(d=M3nut, h=M3nutThickness*2+2);
 
 	}// end difference

@@ -21,9 +21,9 @@ width=frameX;
 
 			// bolt flanges
 			hull(){
-				translate([0, width/2+thickness, 0])
+				translate([0, width/2+thickness+M5/2, 0])
 					polycyl(d=width, h=thickness);
-				translate([0, -width/2-thickness, 0])
+				translate([0, -width/2-thickness-M5/2, 0])
 					polycyl(d=width, h=thickness);
 			}
 
@@ -39,10 +39,10 @@ width=frameX;
 			cube([width*2, width*2, smoothRod], center=true);
 
 		// holes
-		translate([0, smoothRod+thickness, -1])
+		translate([0, smoothRod+thickness+M5/2, -1])
 			polyhole(d=M5, h=thickness+2);
 		mirror([0,1,0])
-			translate([0, smoothRod+thickness, -1])
+			translate([0, smoothRod+thickness+M5/2, -1])
 				polyhole(d=M5, h=thickness+2);
 
 	}// end difference
