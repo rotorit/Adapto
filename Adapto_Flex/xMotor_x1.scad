@@ -4,10 +4,10 @@ include <./inc/configuration.scad>
 use <./inc/polyarc.scad>
 use <./inc/xBacker.scad>
 
-xMotor_Flex();
+rotate([0, -90, 180])
+	xMotor_Flex();
 
 module xMotor_Flex(){
-xRodDistance=70;
 
 	difference(){
 
@@ -18,8 +18,8 @@ xRodDistance=70;
 			// nema mounting
 			hull(){
 				translate([-88/2, 30-18/2-6,  thickness*2+linearBearing[1]])
-					cube([88, 1, 1]);
-				translate([-88/2, 30+18/2-1,  thickness*2+linearBearing[1]])
+					cube([88, 1, thickness-1]);
+				translate([-88/2, 30+18/2,  thickness*2+linearBearing[1]])
 					cube([88, 1, thickness+1]);
 
 				translate([0, 30+zRodnut/2+thickness+M3, thickness*2+linearBearing[1]])
@@ -63,15 +63,15 @@ xRodDistance=70;
 			cube([45, 45, 45]);
 
 		// make sure the holes for the screws to hold the x smooth rods in place remain clear
-		translate([xRodDistance/2, 30-18/2, -1])
+		translate([70/2, 30-18/2, -1])
 			polyhole(d=M3nut, h=thickness*2+linearBearing[1]+thickness+1);
 		mirror([1,0,0])
-			translate([xRodDistance/2, 30-18/2, -1])
+			translate([70/2, 30-18/2, -1])
 				polyhole(d=M3nut, h=thickness*2+linearBearing[1]+thickness+1);//
-		translate([xRodDistance/2, 30-18/2, thickness*2+linearBearing[1]+thickness-1])
+		translate([70/2, 30-18/2, thickness*2+linearBearing[1]+thickness-1])
 			polyhole(d=M3, h=thickness+2+smoothRod/2);
 		mirror([1,0,0])
-			translate([xRodDistance/2, 30-18/2, thickness*2+linearBearing[1]+thickness-1])
+			translate([70/2, 30-18/2, thickness*2+linearBearing[1]+thickness-1])
 				polyhole(d=M3, h=thickness+2+smoothRod/2);
 
 	}// end difference
