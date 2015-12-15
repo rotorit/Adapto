@@ -2,39 +2,70 @@
 // After an stl designed by RoTorIT
 // Adapto is licensed under the Creative Commons - GNU GPL license.
 // http://creativecommons.org/licenses/GPL/2.0/
+include <./inc/configuration.scad>
+use <./inc/polyarc.scad>
+use <./inc/xBacker.scad>
+use <./inc/nemaMount.scad>
 
+xMotor();
 
-use <bolt.scad>;
-include <configuration.scad>;
+module xMotor(){
 
-$fn=33;
-m8rodr=8/2;
-m4rodr=4/2;
-m3rodr=3/2;
-motorcc=31;// centre-centre of the motor screw holes for nema17
-centerr=25/2;// radius of the centre holes
+	difference(){
 
-difference(){
-	union(){
-		cube([62, 48, 8]);
-		translate([30, 48, 0]) cube([32, 22, 21]);
-		translate([0, 48-2, 0]) cube([62, 2, 21]);
-		translate([58, 0, 0]) cube([4, 48, 21]);
-	}
-	translate([34+m8rodr, 48, 4+m8rodr]) rotate([-90,0,0]) cylinder(r=m8rodr, h=24+1);
-	translate([30-1, 51+m4rodr, 14+m4rodr]) rotate([0,90,0]) cylinder(r=m4rodr, h=32+1+1);
-	translate([8+centerr, 4+2*m3rodr+centerr, -1]) cylinder(r=centerr, h=8+2);
-	translate([8+centerr+motorcc-(18-2*m3rodr), 4+2*m3rodr+centerr, -1]) cylinder(r=centerr, h=8+2);
-	translate([8+centerr, 4+2*m3rodr, -1]) cube([motorcc-(18-2*m3rodr), 2*centerr, 8+2]);
-	translate([4, 4, -1]) oval();
-	translate([4+motorcc, 4, -1]) oval();
-	translate([4, 4+motorcc, -1]) oval();
-	translate([4+motorcc, 4+motorcc, -1]) oval();
-	translate([0, 57, 14]) cube([111, 111, 111]);
-}
+		union(){
 
-module oval(){
-	cylinder(r=m3rodr, h=8+2);
-	translate([0, -m3rodr, 0]) cube([18-2*m3rodr, 2*m3rodr, 8+2]);
-	translate([18-2*m3rodr, 0, 0]) cylinder(r=m3rodr, h=8+2);
+			xBacker();
+
+			// create nema mount
+			translate([44, 66, thickness+2])
+				rotate([0, -90, 0])
+				nemaMount();
+
+			// y spacer between xBacker and nemaMount
+			translate([44-thickness, 63, thickness+2])
+				cube([thickness, 4, 56-thickness/2]);
+
+			// x spacer between nemaMount and support arm
+			translate([44-thickness, 63, thickness-1])
+				cube([thickness, 48, thickness]);
+
+			// block for adjustable z height endstop screw
+			translate([-44+thickness, 40-ceil(M3nut+M3nut/2), linearBearing[1]/2+thickness])
+				cube([thickness, ceil(M3nut+M3nut/2), ceil(M3nut+M3nut/2)]);
+
+			// support arm from xBacker to nemaMount
+			hull(){
+				translate([21, 63, 0])
+					cube([23, 1, thickness+1]);
+				translate([44-thickness, 110, 0])
+					cube([thickness, 1, thickness+1]);
+			}
+
+			// additional support from xBacker to nemaMount
+			hull(){
+				translate([44-thickness-linearBearing[1]/2, 44, 27+thickness+linearBearing[1]])
+					cube([thickness+linearBearing[1]/2, 20, 2]);
+				translate([44-thickness, 64, 56])
+					cube([thickness, 3, thickness+2]);
+			}
+
+		}// end union
+
+		// nut trap for z height screw
+		translate([-44+thickness+M3nutThickness, 40-ceil(M3nut-M3/2), linearBearing[1]/2+thickness+M3nut-M3/2])
+			rotate([0,90,0])
+			polynut(d=M3nut, h=ceil(M3nutThickness));
+
+		// hole for z height screw
+		translate([-44+thickness-1, 40-ceil(M3nut-M3/2), linearBearing[1]/2+thickness+M3nut-M3/2])
+			rotate([0,90,0])
+			polycyl(d=M3, h=ceil(thickness+2));
+
+		// make sure we keep the x rod opening clear
+		translate([xRodDistance/2, 65, 27+thickness+linearBearing[1]/2])
+			rotate([90, 0, 0])
+			polycyl(d=smoothRod+.1, h=10);
+
+	}// end difference
 }
